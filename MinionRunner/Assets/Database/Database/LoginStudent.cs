@@ -11,6 +11,9 @@ public class LoginStudent : MonoBehaviour
 
     public void Login()
     {
+        DataBaseManager.notCorrect = false;
+        DataBaseManager.notInDB = false;
+
         if(email.text != "" && password.text != "")
         {
             string e = email.text;

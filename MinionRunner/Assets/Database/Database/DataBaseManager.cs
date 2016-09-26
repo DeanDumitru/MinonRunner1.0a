@@ -9,10 +9,13 @@ using UnityEngine.SceneManagement;
 
 public class DataBaseManager : MonoBehaviour {
 
-
+    public static bool notInDB = false;
+    public static bool notCorrect = false;
+    public GameObject notInDBText;
+    public GameObject notCorrectText;
 
 	/// <summary>
-	/// The connection string, this string tells the path to the database
+	/// The connection string, this string tells the path to the databas
 	/// </summary>
 	private static string connectionString;
 
@@ -28,8 +31,15 @@ public class DataBaseManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+    {
+        if (notCorrect == true)
+            notCorrectText.SetActive(true);
+        else notCorrectText.SetActive(false);
+
+        if (notInDB == true)
+            notInDBText.SetActive(true);
+        else notInDBText.SetActive(false);
 	}
 
 	/// <summary>
@@ -79,7 +89,7 @@ public class DataBaseManager : MonoBehaviour {
 				//Creates a query for inserting the new score
 			    string sqlQuery = String.Format("INSERT INTO StudentPI (Email,Password,Username,FirstName,LastName) VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")", email, password, username, firstName, lastName);
 
-				dbCmd.CommandText = sqlQuery; //Gives the query to the commandtext
+                dbCmd.CommandText = sqlQuery; //Gives the query to the commandtext
 				dbCmd.ExecuteScalar(); //Executes the query
 				dbConnection.Close();//Closes the connetcion
 
@@ -136,9 +146,12 @@ public class DataBaseManager : MonoBehaviour {
                     {
                         UserClass.player.firstName = f;
                         UserClass.player.lastName = l;
-                        allowLogin(level);
+                        UserClass.player.userId = u;
+                        allowLogin(email, level);
                     }
-                   // else denyLogin(); - currently not working because of static reference
+                    else if ((e == email && p != password) || (e != email && p == password))
+                        denyLogin();
+                    else requireRegister();
 
                     //Closes the connection
                     dbConnection.Close();
@@ -148,12 +161,37 @@ public class DataBaseManager : MonoBehaviour {
         }
 
     }
-    static void allowLogin(string level)
+    static void allowLogin(string email, string level)
     {
+        /*/Creates a database connection
+        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        {
+            //Opens the connection
+            dbConnection.Open();
+
+            //Creates a database comment
+            using (IDbCommand dbCmd = dbConnection.CreateCommand())
+            {
+                //Creates a query for inserting the new score
+                string sqlQuery = String.Format("INSERT INTO StudentLoginRegister (Email) VALUES(\"{0}\")", email);
+
+                dbCmd.CommandText = sqlQuery; //Gives the query to the commandtext
+                dbCmd.ExecuteScalar(); //Executes the query
+                dbConnection.Close();//Closes the connetcion
+
+            }
+        }*/
+
         SceneManager.LoadScene(level);
     }
-    //static void denyLogin()
-    //{ }
+    static void denyLogin()
+    {
+        notCorrect = true;
+    }
+    static void requireRegister()
+    {
+        notInDB = true;
+    }
 
 
     /// <summary>
