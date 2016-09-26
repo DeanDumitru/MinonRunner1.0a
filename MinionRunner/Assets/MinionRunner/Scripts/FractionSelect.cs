@@ -5,9 +5,8 @@ using System.Collections;
 
 public class FractionSelect : MonoBehaviour {
 
-    public GameObject myFraction;
-    public GameObject RightWrongAnswer;
-    public GameObject lives;
+    public static FractionSelect instance;
+ //   public GameObject lives;
 
     public GameObject slowMotion;
 
@@ -16,6 +15,13 @@ public class FractionSelect : MonoBehaviour {
     public float SlowMoTime, SlowTimeAllowed;
     private float currentSlowMo = 0.0F;
     public float resetTime;
+
+    public GameObject[] myFraction;
+    public GameObject RightWrongAnswer;
+
+    public GameObject[] inputPanels;
+    public Slider[] sliderValue;
+    public Slider[] slider2ndCheck;
 
     public Sprite[] reset;
     public Sprite[] oneHalf;
@@ -28,6 +34,7 @@ public class FractionSelect : MonoBehaviour {
     public Sprite[] wrong;
      
     private int AnswerCheck;
+    private int sliderSelect;
     
  /*   void OnTriggerStay(Collider other) // Activate Particle System
     {
@@ -62,172 +69,198 @@ public class FractionSelect : MonoBehaviour {
         {
             Debug.Log("HitFraction2 show me");
             SlowMo();
-            int randomFraction = Random.Range(0, 6);
+            int randomFraction = Random.Range(0, 5);
 
             if (randomFraction == 0)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneHalf[0];
+                sliderSelect = 0;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneHalf[0];
                 AnswerCheck = 1;                           
             }
             else if (randomFraction == 1)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneHalf[1];
+                sliderSelect = 1;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneHalf[1];
                 AnswerCheck = 1;
             }
             else if (randomFraction == 2)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneHalf[2];
+                sliderSelect = 2;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneHalf[2];
                 AnswerCheck = 1;
             }
             else if (randomFraction == 3)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneHalf[3];
+                sliderSelect = 3;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneHalf[3];
                 AnswerCheck = 1;
             }
             else if (randomFraction == 4)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneHalf[4];
+                sliderSelect = 4;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneHalf[4];
                 AnswerCheck = 1;
             }
-            else if (randomFraction == 5)
-            {
-                myFraction.GetComponent<Image>().overrideSprite = oneHalf[5];
-                AnswerCheck = 1;
-            }
+
 
         }
         else if (other.tag == "Fraction3")
         {
             Debug.Log("Hit Fraction 3 show me");
             SlowMo();
-            int randomFraction = Random.Range(0, 11);
+            int randomFraction = Random.Range(0, 10);
 
             if (randomFraction == 0)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneThird[0];
-                AnswerCheck = 1;
+                sliderSelect = 5;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneThird[0];
+                AnswerCheck = 2;
             }
             else if (randomFraction == 1)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneThird[1];
-                AnswerCheck = 1;
+                sliderSelect = 6;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneThird[1];
+                AnswerCheck = 2;
             }
             else if (randomFraction == 2)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneThird[2];
-                AnswerCheck = 1;
+                sliderSelect = 7;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneThird[2];
+                AnswerCheck = 2;
             }
             else if (randomFraction == 3)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneThird[3];
-                AnswerCheck = 1;
+                sliderSelect = 8;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneThird[3];
+                AnswerCheck = 2;
             }
             else if (randomFraction == 4)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneThird[4];
-                AnswerCheck = 1;
+                sliderSelect = 9;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneThird[4];
+                AnswerCheck = 2;
             }
             else if (randomFraction == 5)
             {
-                myFraction.GetComponent<Image>().overrideSprite = oneThird[5];
-                AnswerCheck = 1;
+                sliderSelect = 10;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = twoThird[0];
+                AnswerCheck = 3;
             }
             else if (randomFraction == 6)
             {
-                myFraction.GetComponent<Image>().overrideSprite = twoThird[0];
-                AnswerCheck = 2;
+                sliderSelect = 11;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = twoThird[1];
+                AnswerCheck = 3;
             }
             else if (randomFraction == 7)
             {
-                myFraction.GetComponent<Image>().overrideSprite = twoThird[1];
-                AnswerCheck = 2;
+                sliderSelect = 12;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = twoThird[2];
+                AnswerCheck = 3;
             }
             else if (randomFraction == 8)
             {
-                myFraction.GetComponent<Image>().overrideSprite = twoThird[2];
-                AnswerCheck = 2;
+                sliderSelect = 13;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = twoThird[3];
+                AnswerCheck = 3;
             }
             else if (randomFraction == 9)
             {
-                myFraction.GetComponent<Image>().overrideSprite = twoThird[3];
-                AnswerCheck = 2;
+                sliderSelect = 14;
+                inputPanels[sliderSelect].gameObject.SetActive(true);
+                myFraction[sliderSelect].GetComponent<Image>().overrideSprite = twoThird[4];
+                AnswerCheck = 3;
             }
-            else if (randomFraction == 10)
-            {
-                myFraction.GetComponent<Image>().overrideSprite = twoThird[4];
-                AnswerCheck = 2;
-            }
-            else if (randomFraction == 11)
-            {
-                myFraction.GetComponent<Image>().overrideSprite = twoThird[5];
-                AnswerCheck = 2;
-            }
+        
+
+            
 
         }
         if (other.tag == "Fraction4")
         {
              Debug.Log("Hit Fraction 4 show me");
              SlowMo();
-             int randomFraction = Random.Range(0, 11);
+             int randomFraction = Random.Range(0, 9);
            
                 if (randomFraction == 0)
                 {
-                    myFraction.GetComponent<Image>().overrideSprite = oneFourth[0];
-                    AnswerCheck = 1;
+                    sliderSelect = 15;
+                    inputPanels[sliderSelect].gameObject.SetActive(true);
+                    myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneFourth[0];
+                    AnswerCheck = 4;
                 }
                 else if (randomFraction == 1)
                 {
-                    myFraction.GetComponent<Image>().overrideSprite = oneFourth[1];
-                    AnswerCheck = 1;
+                    sliderSelect = 16;
+                    inputPanels[sliderSelect].gameObject.SetActive(true);
+                    myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneFourth[1];
+                    AnswerCheck = 4;
                 }
                 else if (randomFraction == 2)
                 {
-                    myFraction.GetComponent<Image>().overrideSprite = oneFourth[2];
-                    AnswerCheck = 1;
+                    sliderSelect = 17;
+                    inputPanels[sliderSelect].gameObject.SetActive(true);
+                    myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneFourth[2];
+                    AnswerCheck = 4;
                 }
                 else if (randomFraction == 3)
                 {
-                    myFraction.GetComponent<Image>().overrideSprite = oneFourth[3];
-                    AnswerCheck = 1;
+                    sliderSelect = 18;
+                    inputPanels[sliderSelect].gameObject.SetActive(true);
+                    myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneFourth[3];
+                    AnswerCheck = 4;
                 }
                 else if (randomFraction == 4)
                 {
-                    myFraction.GetComponent<Image>().overrideSprite = oneFourth[4];
-                    AnswerCheck = 1;
+                    sliderSelect = 19;
+                    inputPanels[sliderSelect].gameObject.SetActive(true);
+                    myFraction[sliderSelect].GetComponent<Image>().overrideSprite = oneFourth[4];
+                    AnswerCheck = 4;
                 }
                 else if (randomFraction == 5)
                 {
-                    myFraction.GetComponent<Image>().overrideSprite = oneFourth[5];
-                    AnswerCheck = 1;
+                    sliderSelect = 20;
+                    inputPanels[sliderSelect].gameObject.SetActive(true);
+                    myFraction[sliderSelect].GetComponent<Image>().overrideSprite = threeFourth[0];
+                    AnswerCheck = 5;
                 }
                 if (randomFraction == 6)
                 {
-                    myFraction.GetComponent<Image>().overrideSprite = threeFourth[0];
-                    AnswerCheck = 3;
+                    sliderSelect = 21;
+                    inputPanels[sliderSelect].gameObject.SetActive(true);
+                    myFraction[sliderSelect].GetComponent<Image>().overrideSprite = threeFourth[1];
+                    AnswerCheck = 5;
                 }
                 else if (randomFraction == 7)
                 {
-                    myFraction.GetComponent<Image>().overrideSprite = threeFourth[1];
-                    AnswerCheck = 3;
+                    sliderSelect = 22;
+                    inputPanels[sliderSelect].gameObject.SetActive(true);
+                    myFraction[sliderSelect].GetComponent<Image>().overrideSprite = threeFourth[2];
+                    AnswerCheck = 5;
                 }
                 else if (randomFraction == 8)
                 {
-                    myFraction.GetComponent<Image>().overrideSprite = threeFourth[2];
-                    AnswerCheck = 3;
+                    sliderSelect = 23;
+                    inputPanels[sliderSelect].gameObject.SetActive(true);
+                    myFraction[sliderSelect].GetComponent<Image>().overrideSprite = threeFourth[3];
+                    AnswerCheck = 5;
                 }
-                else if (randomFraction == 9)
-                {
-                    myFraction.GetComponent<Image>().overrideSprite = threeFourth[3];
-                    AnswerCheck = 3;
-                }
-                else if (randomFraction == 10)
-                {
-                    myFraction.GetComponent<Image>().overrideSprite = threeFourth[4];
-                    AnswerCheck = 3;
-                }
-
-           }
         }
+    }
 
     void SlowMo()
     {
@@ -245,7 +278,7 @@ public class FractionSelect : MonoBehaviour {
 
     void Reset()
     {
-        myFraction.GetComponent<Image>().overrideSprite = reset[0];
+        myFraction[sliderSelect].GetComponent<Image>().overrideSprite = reset[0];
         slowMotion.gameObject.SetActive(false);
         
     }
@@ -255,21 +288,30 @@ public class FractionSelect : MonoBehaviour {
         RightWrongAnswer.GetComponent<Image>().overrideSprite = reset[1];
     }
 
-    void AnswerCheckOne()
+    public bool checkAnswer;
+    void AnswerCheckOneHalf()
     {
-
-        if (Input.GetButtonDown("Fire1") && AnswerCheck ==1 )
+        if (0.45 <= checkInput && 0.55 >= checkInput)
         {
-            Scoring.score = Scoring.score + 5;
+            checkAnswer = true;
+        }
+        else
+        {
+            checkAnswer = false;
+        }
+         
+        if (AnswerCheck == 1 && checkAnswer)
+        {
             Time.timeScale = 1.0F;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
             Debug.Log("1 = 1 ... + 5");
-            AnswerCheck = 10;
+       
             RightWrongAnswer.GetComponent<Image>().overrideSprite = right[Random.Range(0, 5)];
-            Reset();
-            Invoke("Reset2", resetTime);
+            Panel.playAnimation = true;
+            //Invoke("Reset2", resetTime);
+            Panel.playAnimation = true;
         }
-        else if (Input.GetButtonDown("Fire0") || Input.GetButtonDown("Fire2") || Input.GetButtonDown("Fire3") || Input.GetButtonDown("Fire4"))
+        else if (!checkAnswer)
         {
             if (AnswerCheck == 1)
             {
@@ -280,26 +322,34 @@ public class FractionSelect : MonoBehaviour {
                 Debug.Log("1 = 1 wrong ... - 5");
                 RightWrongAnswer.GetComponent<Image>().overrideSprite = wrong[Random.Range(0, 5)];
                 Invoke("Reset2", resetTime);
-                AnswerCheck = 10;
-                Reset();
+               
+
             }
         }
     }
-
-    void AnswerCheckTwo()
+    private bool AnswerWasRightOrWrong = false;
+    void AnswerCheckOneThird()
     {
-        if (Input.GetButtonDown("Fire2") && AnswerCheck == 2)
+
+        if (0.27 <= checkInput && 0.36 >= checkInput)
         {
-            Scoring.score = Scoring.score + 5;
+            checkAnswer = true;
+        }
+        else
+        {
+            checkAnswer = false;
+        }
+        if (checkAnswer && AnswerCheck == 2)
+        {
             Time.timeScale = 1.0F;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
             Debug.Log("2 = 2 ... + 5");
             RightWrongAnswer.GetComponent<Image>().overrideSprite = right[Random.Range(0, 5)];
-            Invoke("Reset2", resetTime);
-            AnswerCheck = 10;
-            Reset();
+         //   Invoke("Reset2", resetTime);
+     
+            AnswerWasRightOrWrong = true;
         }
-        else if (Input.GetButtonDown("Fire0") || Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire3") || Input.GetButtonDown("Fire4"))
+        else if (!checkAnswer)
         {
             if (AnswerCheck == 2)
             {
@@ -309,28 +359,35 @@ public class FractionSelect : MonoBehaviour {
                 Time.fixedDeltaTime = 0.02F * Time.timeScale;
                 Debug.Log("2 = 2  wrong ... - 5");
                 RightWrongAnswer.GetComponent<Image>().overrideSprite = wrong[Random.Range(0, 5)];
-                Invoke("Reset2", resetTime);
-                AnswerCheck = 10;
-                Reset();
+            //    Invoke("Reset2", resetTime);
+              
+                AnswerWasRightOrWrong = false;
             }
         }
     }
 
-    void AnswerCheckThree()
+    void AnswerCheckThreeTwoThird()
     {
-        if (Input.GetButtonDown("Fire3") && AnswerCheck == 3)
+        if (0.63 <= checkInput && 0.69 >= checkInput)
         {
-            Scoring.score = Scoring.score + 5;
+            checkAnswer = true;
+        }
+        else
+        {
+            checkAnswer = false;
+        }
+        if (checkAnswer && AnswerCheck == 3)
+        {
             Time.timeScale = 1.0F;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
             Debug.Log("3 = 3.... +5");
             RightWrongAnswer.GetComponent<Image>().overrideSprite = right[Random.Range(0, 5)];
-            Invoke("Reset2", resetTime);
-            AnswerCheck = 10;
-            Reset();
-
+            //      Invoke("Reset2", resetTime);
+            Panel.playAnimation = true;
+          
+            AnswerWasRightOrWrong = true;
         }
-        else if (Input.GetButtonDown("Fire0") || Input.GetButtonDown("Fire1") || Input.GetButtonDown("Fire2") || Input.GetButtonDown("Fire4"))
+        else if (!checkAnswer)
         {
             if (AnswerCheck == 3)
             {
@@ -340,14 +397,90 @@ public class FractionSelect : MonoBehaviour {
                 Time.fixedDeltaTime = 0.02F * Time.timeScale;
                 Debug.Log("3 = 3  wrong ... - 5");
                 RightWrongAnswer.GetComponent<Image>().overrideSprite = wrong[Random.Range(0, 5)];
-                Invoke("Reset2", resetTime);
-                AnswerCheck = 10;
-                Reset();
-
+          //      Invoke("Reset2", resetTime);
+              
+                AnswerWasRightOrWrong = false;
+               
             }
         }
     }
 
+    void AnswerCheckOneFourth()
+    {
+            if (0.20 <= checkInput && 0.30 >= checkInput)
+            {
+                checkAnswer = true;
+            }
+            else
+            {
+                checkAnswer = false;
+            }
+            if (checkAnswer && AnswerCheck == 4)
+            {
+                Time.timeScale = 1.0F;
+                Time.fixedDeltaTime = 0.02F * Time.timeScale;
+                Debug.Log("3 = 3.... +5");
+                RightWrongAnswer.GetComponent<Image>().overrideSprite = right[Random.Range(0, 5)];
+           //     Invoke("Reset2", resetTime);
+              
+                AnswerWasRightOrWrong = true;
+                Panel.playAnimation = true;
+        }
+            else if (!checkAnswer)
+            {
+                if (AnswerCheck == 4)
+                {
+                    Scoring.score = Scoring.score - 5;
+                    //    Scoring.lives = Scoring.lives - 1;
+                    Time.timeScale = 1.0F;
+                    Time.fixedDeltaTime = 0.02F * Time.timeScale;
+                    Debug.Log("3 = 3  wrong ... - 5");
+                    RightWrongAnswer.GetComponent<Image>().overrideSprite = wrong[Random.Range(0, 5)];
+               //     Invoke("Reset2", resetTime);
+                   
+                    AnswerWasRightOrWrong = false;
+            }
+            }
+        }
+
+    void AnswerCheckThreeFourth()
+    {
+        if (0.70 <= checkInput && 0.80 >= checkInput)
+        {
+            checkAnswer = true;
+        }
+        else
+        {
+            checkAnswer = false;
+        }
+
+        if (checkAnswer && AnswerCheck == 5)
+        {
+            Time.timeScale = 1.0F;
+            Time.fixedDeltaTime = 0.02F * Time.timeScale;
+            Debug.Log("3 = 3.... +5");
+            RightWrongAnswer.GetComponent<Image>().overrideSprite = right[Random.Range(0, 5)];
+        //    Invoke("Reset2", resetTime);
+     
+            AnswerWasRightOrWrong = true;
+            Panel.playAnimation = true;
+        }
+        else if (!checkAnswer)
+        {
+            if (AnswerCheck == 5)
+            {
+                Scoring.score = Scoring.score - 5;
+                //    Scoring.lives = Scoring.lives - 1;
+                Time.timeScale = 1.0F;
+                Time.fixedDeltaTime = 0.02F * Time.timeScale;
+                Debug.Log("3 = 3  wrong ... - 5");
+                RightWrongAnswer.GetComponent<Image>().overrideSprite = wrong[Random.Range(0, 5)];
+             //   Invoke("Reset2", resetTime);
+           
+                AnswerWasRightOrWrong = false;
+            }
+        }
+    }
 
     void Update()
     {
@@ -360,17 +493,74 @@ public class FractionSelect : MonoBehaviour {
             transform.position = transform.position;
         }
 
-        AnswerCheckOne();
-        AnswerCheckTwo();
-        AnswerCheckThree();
-
     }
 
-  /*  public void gameOver()
+    public float checkInput;
+    public void Submit1stSlider()
     {
-        if(Scoring.lives == 0)
+        Debug.Log(sliderValue[sliderSelect].value);
+
+        checkInput = sliderValue[sliderSelect].value;
+     
+        AnswerCheckOneFourth();
+     
+        AnswerCheckOneHalf();
+       
+        AnswerCheckOneThird();
+
+        AnswerCheckThreeTwoThird();
+   
+        AnswerCheckThreeFourth();
+       
+        Invoke("Reset2", resetTime);
+
+
+        //   
+
+    }
+    public float check2ndInput;
+    public void Submit2ndSlider()
+    {
+        Debug.Log(slider2ndCheck[sliderSelect].value);
+
+        check2ndInput = slider2ndCheck[sliderSelect].value;
+        Panel.playAnimation = false;
+        SpawnSlider.ss = false;
+
+        if (Mathf.Abs(check2ndInput - checkInput) < 0.08)
         {
+            inputPanels[sliderSelect].gameObject.SetActive(false);
+            RightWrongAnswer.GetComponent<Image>().overrideSprite = right[Random.Range(0, 5)];
+            Invoke("Reset2", resetTime);
+            Reset();
+            Scoring.score = Scoring.score + 5;
+            slider2ndCheck[sliderSelect].value = 0;
+            sliderValue[sliderSelect].value = 0;
+            
 
         }
-    }*/
+        else
+        {
+            RightWrongAnswer.GetComponent<Image>().overrideSprite = wrong[Random.Range(0, 5)];
+            Invoke("Reset2", resetTime);
+        }
+
+        
+        
+    }
+
+    /*  public void gameOver()
+      {
+          if(Scoring.lives == 0)
+          {
+
+          }
+      }*/
 }
+
+
+/* reset animation
+ * setactive false slider
+ * button and text
+ * */
+ 
