@@ -6,22 +6,18 @@ using System.IO;
 
 public class UserClass : MonoBehaviour {
 
-    static public user player = new user(null, null, null, null, null, null, null, false, -1, null);
+    static public user player = new user(null, null, null, null, null, null, null, false);
     [System.Serializable]
     public class user
     {
-        
-
         public string userId;
         public string firstName;
         public string lastName;
         public string email;
-        public string dob;
-        public string pn;
-        public string problemId;
+        public string givenFraction;
+        public string enteredFraction;
+        public string enteredRFraction;
         public bool success;
-        public int score;
-        public string hintId;
 
 
         /// <summary>
@@ -29,18 +25,17 @@ public class UserClass : MonoBehaviour {
         /// </summary>
         /// 
 
-        public user(string userId1, string fn, string ln, string email1, string dob1, string pn1, string problemId1, bool success1, int score1, string hintId1)
+        public user(string userId1, string fn, string ln, string email1, string gf, string ef, string erf, bool success1)
         {
             userId = userId1;
             firstName = fn;
             lastName = ln;
             email = email1;
-            dob = dob1;
-            pn = pn1;
-            problemId = problemId1;
+            givenFraction = gf;
+            enteredFraction = ef;
+            enteredRFraction = erf;
             success = success1;
-            score = score1;
-            hintId = hintId1;
+           
         }
 
         public void setUserId(string userId1)
@@ -52,14 +47,14 @@ public class UserClass : MonoBehaviour {
             return userId;
         }
 
-        public void setProblemId(string problemId1)
+      /*  public void setProblemId(string problemId1)
         {
             problemId = problemId1;
         }
         public string getProblemId()
         {
             return problemId;
-        }
+        }*/
 
         public void setSuccess(bool success1)
         {
@@ -70,7 +65,7 @@ public class UserClass : MonoBehaviour {
             return success;
         }
 
-        public void setScore(int score1)
+       /* public void setScore(int score1)
         {
             score = score1;
         }
@@ -86,7 +81,7 @@ public class UserClass : MonoBehaviour {
         public string getHintId()
         {
             return hintId;
-        }
+        }*/
 
         public void printUserMain()
         {
