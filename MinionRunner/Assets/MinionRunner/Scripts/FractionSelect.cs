@@ -35,7 +35,7 @@ public class FractionSelect : MonoBehaviour {
      
     private int AnswerCheck;
     private int sliderSelect;
-    
+
  /*   void OnTriggerStay(Collider other) // Activate Particle System
     {
         if (other.tag == "Fraction2" && Input.GetButtonDown("Fire1")) 
@@ -65,10 +65,14 @@ public class FractionSelect : MonoBehaviour {
 */
     void OnTriggerEnter(Collider other) // show the fractions 
     {
+        FractionSelect.resetAnimation = false;
+        //      GameObject.Find("Slider 1").GetComponent<Animator>().Play("Idle", -1, 0f);
+
+
         if (other.tag == "Fraction2")
         {
             Debug.Log("HitFraction2 show me");
-            SlowMo();
+         //   SlowMo();
             int randomFraction = Random.Range(0, 5);
 
             if (randomFraction == 0)
@@ -112,7 +116,7 @@ public class FractionSelect : MonoBehaviour {
         else if (other.tag == "Fraction3")
         {
             Debug.Log("Hit Fraction 3 show me");
-            SlowMo();
+    //        SlowMo();
             int randomFraction = Random.Range(0, 10);
 
             if (randomFraction == 0)
@@ -193,7 +197,7 @@ public class FractionSelect : MonoBehaviour {
         if (other.tag == "Fraction4")
         {
              Debug.Log("Hit Fraction 4 show me");
-             SlowMo();
+       ///      SlowMo();
              int randomFraction = Random.Range(0, 9);
            
                 if (randomFraction == 0)
@@ -309,7 +313,6 @@ public class FractionSelect : MonoBehaviour {
             RightWrongAnswer.GetComponent<Image>().overrideSprite = right[Random.Range(0, 5)];
             Panel.playAnimation = true;
             //Invoke("Reset2", resetTime);
-            Panel.playAnimation = true;
         }
         else if (!checkAnswer)
         {
@@ -345,8 +348,8 @@ public class FractionSelect : MonoBehaviour {
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
             Debug.Log("2 = 2 ... + 5");
             RightWrongAnswer.GetComponent<Image>().overrideSprite = right[Random.Range(0, 5)];
-         //   Invoke("Reset2", resetTime);
-     
+            //   Invoke("Reset2", resetTime);
+            Panel.playAnimation = true;
             AnswerWasRightOrWrong = true;
         }
         else if (!checkAnswer)
@@ -501,24 +504,25 @@ public class FractionSelect : MonoBehaviour {
         Debug.Log(sliderValue[sliderSelect].value);
 
         checkInput = sliderValue[sliderSelect].value;
-     
-        AnswerCheckOneFourth();
-     
+    
+        AnswerCheckOneFourth();  
         AnswerCheckOneHalf();
-       
         AnswerCheckOneThird();
-
-        AnswerCheckThreeTwoThird();
-   
-        AnswerCheckThreeFourth();
-       
+        AnswerCheckThreeTwoThird();  
+        AnswerCheckThreeFourth();      
         Invoke("Reset2", resetTime);
 
-
+       /* if (AnswerWasRightOrWrong == true)
+        {
+          GameObject.Find("Check Answer Button").SetActive(false);
+        }
+        */
         //   
 
     }
     public float check2ndInput;
+
+    public static bool resetAnimation = false;
     public void Submit2ndSlider()
     {
         Debug.Log(slider2ndCheck[sliderSelect].value);
@@ -529,13 +533,16 @@ public class FractionSelect : MonoBehaviour {
 
         if (Mathf.Abs(check2ndInput - checkInput) < 0.08)
         {
+            //GameObject.Find("Check Answer Button").SetActive(true);
+            GameObject.Find("Slider (2)").SetActive(false);
+            resetAnimation = true;
             inputPanels[sliderSelect].gameObject.SetActive(false);
             RightWrongAnswer.GetComponent<Image>().overrideSprite = right[Random.Range(0, 5)];
             Invoke("Reset2", resetTime);
             Reset();
             Scoring.score = Scoring.score + 5;
             slider2ndCheck[sliderSelect].value = 0;
-            sliderValue[sliderSelect].value = 0;
+          
             
 
         }

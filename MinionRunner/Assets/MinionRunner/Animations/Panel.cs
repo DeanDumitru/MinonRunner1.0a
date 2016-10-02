@@ -20,6 +20,11 @@ public class Panel : MonoBehaviour
             PlayAnimation();
            // Panel.playAnimation = false;
         }
+        if (FractionSelect.resetAnimation == true)
+        {
+            GetComponent<Animator>().SetBool("ResetPanel", true);
+            
+        }
     }
 
 }
