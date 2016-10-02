@@ -47,10 +47,10 @@ public class GameManager4 : MonoBehaviour {
             else if(FinalFraction == 5)
             InventoryGUI2.inventoryToggle = invetoryStatus;
 
-            UserClass.player.score = FractionManager.score;
+           /* UserClass.player.score = FractionManager.score;
             UserClass.player.success = true;
             UserClass.player.hintId = "Correctly did subtraction";
-            UserClass.player.problemId = currentLevel;
+            UserClass.player.problemId = currentLevel;*/
 
             UserClass.player.printUserByLevel();
             UserClass.record.Add(UserClass.player);
@@ -69,10 +69,10 @@ public class GameManager4 : MonoBehaviour {
             else if (FinalFraction == 5)
                 InventoryGUI2.inventoryToggle = false;
 
-            UserClass.player.score = FractionManager.score;
+           /* UserClass.player.score = FractionManager.score;
             UserClass.player.success = false;
             UserClass.player.hintId = "Incorrectly did subtraction";
-            UserClass.player.problemId = currentLevel;
+            UserClass.player.problemId = currentLevel;*/
 
             UserClass.player.printUserByLevel();
             UserClass.record.Add(UserClass.player);

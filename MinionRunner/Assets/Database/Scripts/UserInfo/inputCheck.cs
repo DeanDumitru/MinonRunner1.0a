@@ -62,10 +62,10 @@ public class inputCheck : MonoBehaviour {
             UserClass.player.firstName = firstName.text;
             UserClass.player.lastName = lastName.text;
             UserClass.player.email = email.text;
-            UserClass.player.problemId = currentLevel;
-            UserClass.player.success = true;
-            UserClass.player.score = -1;
-            UserClass.player.hintId = "Succesfully created a new user";
+            //UserClass.player.problemId = currentLevel;
+           // UserClass.player.success = true;
+           // UserClass.player.score = -1;
+           // UserClass.player.hintId = "Succesfully created a new user";
 
           //  UserClass.record.Add(UserClass.player);
           //  UserClass.player.printUserMain();

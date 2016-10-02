@@ -39,13 +39,13 @@ public class Timer : MonoBehaviour {
                 foreach (GameObject i in ToHide)
                     i.SetActive(false);
 
-                UserClass.player.problemId = "2out3";
+               /* UserClass.player.problemId = "2out3";
                 UserClass.player.score = -1;
                 UserClass.player.success = false;
                 UserClass.player.hintId = "Failed to sprint in time";
 
                 UserClass.player.printUserByLevel();
-                UserClass.record.Add(UserClass.player);
+                UserClass.record.Add(UserClass.player);*/
 
 
             }
