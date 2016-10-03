@@ -144,6 +144,7 @@ public class DataBaseManager : MonoBehaviour {
 
                     if (ok == 1)
                     {
+                        UserClass.player.email = e;
                         UserClass.player.firstName = f;
                         UserClass.player.lastName = l;
                         UserClass.player.userId = u;
@@ -183,7 +184,7 @@ public class DataBaseManager : MonoBehaviour {
             }
         }*/
         /////////////////////////////
-
+        
         SceneManager.LoadScene(level);
     }
     static void denyLogin()
@@ -228,6 +229,7 @@ public class DataBaseManager : MonoBehaviour {
     private static void InsertStudentRecord(string givenFraction, string enteredFraction, string enteredRFraction, bool success)
     {
         string email = UserClass.player.email;
+        Debug.Log(email);
 
         //Creates a database connection
         using (IDbConnection dbConnection = new SqliteConnection(connectionString))
