@@ -11,44 +11,20 @@ using UnityEngine.UI;
 /// </summary>
 public class HighScoreManager : MonoBehaviour {
 
-    /// <summary>
-    /// The connection string, this string tells the path to the database
-    /// </summary>
     private string connectionString;
 
-    /// <summary>
-    /// This list contains all the highscores
-    /// </summary>
     private List<HighScore> highScores = new List<HighScore>();
 
-    /// <summary>
-    /// This prefab is used when we need to create a new highscore
-    /// </summary>
     public GameObject scorePrefab;
 
-    /// <summary>
-    /// This is the parent of all highscore objects
-    /// </summary>
     public Transform scoreParent;
 
-    /// <summary>
-    /// Indicates how many scores we will show to the player
-    /// </summary>
     public int topRanks;
 
-    /// <summary>
-    /// The amount of scores we will save in the database
-    /// </summary>
     public int saveScores;
 
-    /// <summary>
-    /// The name input field
-    /// </summary>
     public InputField enterName;
 
-    /// <summary>
-    /// The dialog for entering the players name
-    /// </summary>
     public GameObject nameDialog;
 
 	// Use this for initialization
@@ -70,6 +46,11 @@ public class HighScoreManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
    {
+        if(PlayerDestroy.playerDead == true)
+        {
+            EnterName();
+            PlayerDestroy.playerDead = false;
+        }
         if (Input.GetKeyDown(KeyCode.Escape)) //If we press escape then we want to show or hide the entername dialog
         {
             nameDialog.SetActive(!nameDialog.activeSelf);
@@ -80,6 +61,9 @@ public class HighScoreManager : MonoBehaviour {
     /// <summary>
     /// Creates a table if it doesn't exist
     /// </summary>
+    /// 
+
+  
     private void CreateTable()
     {
         //Creates the connection
@@ -112,17 +96,14 @@ public class HighScoreManager : MonoBehaviour {
     public void EnterName()
     {
 
-        if (enterName.text != string.Empty) //Makes sure that we have some text to enter
-        {
             int score = Scoring.score; 
 
-            InsertScore(enterName.text, score); //Inserts the score in the database
+            InsertScore(UserClass.player.userId, score); //Inserts the score in the database
 
             enterName.text = string.Empty; //resets the textfield
 
             ShowScores(); //Gets the scores form the database
 
-        }
     }
 
     /// <summary>

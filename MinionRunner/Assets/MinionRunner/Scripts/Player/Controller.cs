@@ -19,7 +19,6 @@ public class Controller : MonoBehaviour
     Rigidbody playerRigidbody;
 
     int floorMask;
-    float camRayLength = 1000f;
 
   //  public Rigidbody bullet;
  //   public Transform shotSpawn;

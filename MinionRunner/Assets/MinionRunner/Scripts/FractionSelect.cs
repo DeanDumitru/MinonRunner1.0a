@@ -121,6 +121,8 @@ public class FractionSelect : MonoBehaviour
     private int sliderSelect;
     private bool AnswerWasRightOrWrong = false;
 
+    public int randomFraction = 0;
+
     /*   void OnTriggerStay(Collider other) // Activate Particle System
        {
            if (other.tag == "Fraction2" && Input.GetButtonDown("Fire1")) 
@@ -153,12 +155,19 @@ public class FractionSelect : MonoBehaviour
         FractionSelect.resetAnimation = false;
         //      GameObject.Find("Slider 1").GetComponent<Animator>().Play("Idle", -1, 0f);
 
-
         if (other.tag == "Fraction2")
         {
+
+            if (Scoring.score <= 20)
+            {
+                randomFraction = 0;
+            }
+            else if (Scoring.score >= 20)
+            {
+                randomFraction = Random.Range(0, 5);
+            }
             Debug.Log("HitFraction2 show me");
-         //   SlowMo();
-            int randomFraction = Random.Range(0, 5);
+            //   SlowMo(); 
 
             if (randomFraction == 0)
             {
@@ -216,8 +225,24 @@ public class FractionSelect : MonoBehaviour
         else if (other.tag == "Fraction3")
         {
             Debug.Log("Hit Fraction 3 show me");
-    //        SlowMo();
-            int randomFraction = Random.Range(0, 10);
+            //        SlowMo();
+            if (Scoring.score <= 20)
+            {
+                randomFraction = Random.Range(0, 2);
+
+                if(randomFraction == 0)
+                {
+                    randomFraction = 0;
+                }
+                else if(randomFraction == 1)
+                {
+                    randomFraction = 5;
+                }
+            }
+            else if (Scoring.score >= 20)
+            {
+                randomFraction = Random.Range(0, 10);
+            }
 
             if (randomFraction == 0)
             {
@@ -324,10 +349,26 @@ public class FractionSelect : MonoBehaviour
         if (other.tag == "Fraction4")
         {
              Debug.Log("Hit Fraction 4 show me");
-       ///      SlowMo();
-             int randomFraction = Random.Range(0, 9);
-           
+            ///      SlowMo();
+            if (Scoring.score <= 20)
+            {
+                randomFraction = Random.Range(0, 2);
+
                 if (randomFraction == 0)
+                {
+                    randomFraction = 0;
+                }
+                else if (randomFraction == 1)
+                {
+                    randomFraction = 5;
+                }
+            }
+            else if (Scoring.score >= 20)
+            {
+                randomFraction = Random.Range(0, 9);
+            }
+
+            if (randomFraction == 0)
                 {
                     sliderSelect = 15;
                     UserClass.player.givenFraction = fifteen;
