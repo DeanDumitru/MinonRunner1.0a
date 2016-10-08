@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 using System.Data;
@@ -14,23 +14,14 @@ public class DataBaseManager : MonoBehaviour {
     public GameObject notInDBText;
     public GameObject notCorrectText;
 
-    /// <summary>
-    /// The connection string, this string tells the path to the databas
-    /// </summary>
     private static string connectionString;
 
-    // Use this for initialization
-    void Start() {
-
-        //Sets the connectionstring as the default datapath inside the assetfolder
+    void Start() 
+	{
         connectionString = "URI=file:" + Application.dataPath + "/StudentDB.s3db";
-
-        //Creates the database if it doesn't exist
-        CreateTable();
-
+		CreateTable ();
     }
-
-    // Update is called once per frame
+		
     void Update()
     {
         if (notCorrect == true)
@@ -41,62 +32,47 @@ public class DataBaseManager : MonoBehaviour {
             notInDBText.SetActive(true);
         else notInDBText.SetActive(false);
     }
-
-    /// <summary>
-    /// Creates a table if it doesn't exist
-    /// </summary>
+		
     private void CreateTable()
     {
-        //Creates the connection
         using (IDbConnection dbConnection = new SqliteConnection(connectionString))
         {
-            //Opens the connection
             dbConnection.Open();
-
-            //Creates a command so that we can execute it on the database
             using (IDbCommand dbCmd = dbConnection.CreateCommand())
             {
-                //Create the query 
                 string sqlQuery = String.Format("CREATE TABLE if not exists StudentPI (Email TEXT PRIMARY KEY NOT NULL  UNIQUE , Password TEXT NOT NULL, Username TEXT NOT NULL, FirstName TEXT NOT NULL, LastName TEXT NOT NULL)");
-
-                //Gives the sqlQuery to the command
                 dbCmd.CommandText = sqlQuery;
-
-                //Executes the commnad
                 dbCmd.ExecuteScalar();
-
-                //Closes the connections
                 dbConnection.Close();
             }
         }
+		using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+		{
+			dbConnection.Open();
+			using (IDbCommand dbCmd = dbConnection.CreateCommand())
+			{
+				string sqlQuery = String.Format("CREATE TABLE if not exists StudentRecords (Email TEXT  NOT NULL, GivenFraction TEXT  NOT NULL, EnteredFraction TEXT  NOT NULL, EnteredReducedFraction TEXT  NOT NULL, Success BOOLEAN  NOT NULL)");
+				dbCmd.CommandText = sqlQuery;
+				dbCmd.ExecuteScalar();
+				dbConnection.Close();
+			}
+		}
     }
-
-    /// <summary>
-    /// Inserts  a new student into the database
-    /// </summary>
+		
     private static void InsertStudent(string email, string password, string username, string firstName, string lastName, string level)
     {
-
-        //Creates a database connection
         using (IDbConnection dbConnection = new SqliteConnection(connectionString))
         {
-            //Opens the connection
             dbConnection.Open();
-
-            //Creates a database comment
             using (IDbCommand dbCmd = dbConnection.CreateCommand())
             {
-                //Creates a query for inserting the new score
                 string sqlQuery = String.Format("INSERT INTO StudentPI (Email,Password,Username,FirstName,LastName) VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")", email, password, username, firstName, lastName);
-
-                dbCmd.CommandText = sqlQuery; //Gives the query to the commandtext
-                dbCmd.ExecuteScalar(); //Executes the query
-                dbConnection.Close();//Closes the connetcion
+                dbCmd.CommandText = sqlQuery; 
+                dbCmd.ExecuteScalar(); 
+                dbConnection.Close();
 
             }
         }
-
-        //loads the game after register
         SceneManager.LoadScene(level);
     }
 
@@ -109,25 +85,16 @@ public class DataBaseManager : MonoBehaviour {
         string l = null;
         int ok = 0;
 
-        //Creates a database connection
         using (IDbConnection dbConnection = new SqliteConnection(connectionString))
         {
-            //Opens the connection
             dbConnection.Open();
-
-            //Creates a database comment
             using (IDbCommand dbCmd = dbConnection.CreateCommand())
             {
-                //Selects everything from the highscores
                 string sqlQuery = "SELECT * FROM StudentPI";
-
-                //feeds the query to the command
                 dbCmd.CommandText = sqlQuery;
-
-                //Creates a reader and executes it so that we can load the highscores
                 using (IDataReader reader = dbCmd.ExecuteReader())
                 {
-                    while (reader.Read()) //As long as we have something to read
+					while (reader.Read())
                     {
                         e = reader.GetString(0);
                         p = reader.GetString(1);
@@ -153,8 +120,6 @@ public class DataBaseManager : MonoBehaviour {
                     else if ((e == email && p != password) || (e != email && p == password))
                         denyLogin();
                     else requireRegister();
-
-                    //Closes the connection
                     dbConnection.Close();
                     reader.Close();
                 }
@@ -164,23 +129,16 @@ public class DataBaseManager : MonoBehaviour {
     }
     static void allowLogin(string email, string level)
     {
-        /////// ERROR: Database is Locked
-        /*/Creates a database connection
-        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        /////// ERROR: Database is Locked 
+        /*using (IDbConnection dbConnection = new SqliteConnection(connectionString))
         {
-            //Opens the connection
             dbConnection.Open();
-
-            //Creates a database comment
             using (IDbCommand dbCmd = dbConnection.CreateCommand())
             {
-                //Creates a query for inserting the new score
                 string sqlQuery = String.Format("INSERT INTO StudentLoginRegister (Email) VALUES(\"{0}\")", email);
-
-                dbCmd.CommandText = sqlQuery; //Gives the query to the commandtext
-                dbCmd.ExecuteScalar(); //Executes the query
-                dbConnection.Close();//Closes the connetcion
-
+                dbCmd.CommandText = sqlQuery;
+                dbCmd.ExecuteScalar();
+                dbConnection.Close();
             }
         }*/
         /////////////////////////////
@@ -195,32 +153,17 @@ public class DataBaseManager : MonoBehaviour {
     {
         notInDB = true;
     }
-
-
-    /// <summary>
-    /// Deletes a specific entry in the database
-    /// </summary>
-    /// <param name="id">The scores database id</param>
+		
     private static void DeleteStudent(string email)
     {
-        //Creates a database connection
         using (IDbConnection dbConnection = new SqliteConnection(connectionString))
         {
-            dbConnection.Open(); //Opens the connection
-
-            //Creates a database command
+            dbConnection.Open();
             using (IDbCommand dbCmd = dbConnection.CreateCommand())
             {
-                //Creates a query
                 string sqlQuery = String.Format("DELETE FROM StudentPI WHERE Email = \"{0}\"", email);
-
-                //Feeds the query to the command
                 dbCmd.CommandText = sqlQuery;
-
-                //Executes the command
                 dbCmd.ExecuteScalar();
-
-                //Closes the connection
                 dbConnection.Close();
             }
         }
@@ -229,24 +172,16 @@ public class DataBaseManager : MonoBehaviour {
     private static void InsertStudentRecord(string givenFraction, string enteredFraction, string enteredRFraction, bool success)
     {
         string email = UserClass.player.email;
-        Debug.Log(email);
 
-        //Creates a database connection
         using (IDbConnection dbConnection = new SqliteConnection(connectionString))
         {
-            //Opens the connection
             dbConnection.Open();
-
-            //Creates a database comment
             using (IDbCommand dbCmd = dbConnection.CreateCommand())
             {
-                //Creates a query for inserting the new score
                 string sqlQuery = String.Format("INSERT INTO StudentRecords (Email,GivenFraction,EnteredFraction,EnteredReducedFraction,Success) VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")", email, givenFraction, enteredFraction, enteredRFraction, success);
-
-                dbCmd.CommandText = sqlQuery; //Gives the query to the commandtext
-                dbCmd.ExecuteScalar(); //Executes the query
-                dbConnection.Close();//Closes the connetcion
-
+                dbCmd.CommandText = sqlQuery;
+                dbCmd.ExecuteScalar();
+                dbConnection.Close();
             }
         }
     }
@@ -270,5 +205,4 @@ public class DataBaseManager : MonoBehaviour {
     {
         InsertStudentRecord(givenFraction, enteredFraction, enteredRFraction, success);
     }
-
 }
