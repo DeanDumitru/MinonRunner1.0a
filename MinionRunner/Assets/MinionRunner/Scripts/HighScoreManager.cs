@@ -23,23 +23,13 @@ public class HighScoreManager : MonoBehaviour {
 
     public int saveScores;
 
-    //public InputField enterName;
-    private bool ActiveMenu;
-    static bool resume;
-    private GameObject player;
-    Controller charControl;
+    public InputField enterName;
 
     public GameObject nameDialog;
-    public GameObject pauseMenuBackground;
 
 	// Use this for initialization
 	void Start ()
     {
-        ActiveMenu = false;
-        resume = false;
-        player = GameObject.Find("Player");
-        charControl = player.GetComponent<Controller>();
-
         //Sets the connectionstring as the default datapath inside the assetfolder
         connectionString = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
 
@@ -61,24 +51,12 @@ public class HighScoreManager : MonoBehaviour {
             EnterName();
             PlayerDestroy.playerDead = false;
         }
-        if (Input.GetKeyDown(KeyCode.Escape) || resume == true) //If we press escape then we want to show or hide the entername dialog
+        if (Input.GetKeyDown(KeyCode.Escape)) //If we press escape then we want to show or hide the entername dialog
         {
             nameDialog.SetActive(!nameDialog.activeSelf);
-            pauseMenuBackground.SetActive(!pauseMenuBackground.activeSelf);
-            ActiveMenu = !ActiveMenu;
-            resume = false;
+
         }
-
-        if (ActiveMenu == true)
-            charControl.enabled = false;
-        else charControl.enabled = true;
-
-    }
-
-    public static void resumeGame()
-    {
-        resume = true;
-    }
+	}
 
     /// <summary>
     /// Creates a table if it doesn't exist
@@ -122,7 +100,7 @@ public class HighScoreManager : MonoBehaviour {
 
             InsertScore(UserClass.player.userId, score); //Inserts the score in the database
 
-           // enterName.text = string.Empty; //resets the textfield
+            enterName.text = string.Empty; //resets the textfield
 
             ShowScores(); //Gets the scores form the database
 
