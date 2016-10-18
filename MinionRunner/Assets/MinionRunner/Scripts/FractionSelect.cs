@@ -97,7 +97,6 @@ public class FractionSelect : MonoBehaviour
     public Transform Player;
 
     public float SlowMoTime, SlowTimeAllowed;
-    private float currentSlowMo = 0.0F;
     public float resetTime;
 
     public GameObject[] myFraction;
@@ -123,33 +122,7 @@ public class FractionSelect : MonoBehaviour
 
     public int randomFraction = 0;
 
-    /*   void OnTriggerStay(Collider other) // Activate Particle System
-       {
-           if (other.tag == "Fraction2" && Input.GetButtonDown("Fire1")) 
-           {
-               other.gameObject.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true); // this is working
-           }
-           else if(other.tag == "Fraction3" && Input.GetButtonDown("Fire1"))
-           {
-               other.gameObject.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true); // working
-           }
-           else if (other.tag == "Fraction3" && Input.GetButtonDown("Fire2"))
-           {
-               other.gameObject.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
-               other.gameObject.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
-           }
-           else if(other.tag == "Fraction4" && Input.GetButtonDown("Fire1"))
-           {
-               other.gameObject.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true); // working
-           }
-           else if (other.tag == "Fraction4" && Input.GetButtonDown("Fire3"))
-           {
-               other.gameObject.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(true);
-               other.gameObject.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
-               other.gameObject.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(true);
-           }
-       }
-   */
+   
     void OnTriggerEnter(Collider other) // show the fractions 
     {
         FractionSelect.resetAnimation = false;
@@ -158,11 +131,11 @@ public class FractionSelect : MonoBehaviour
         if (other.tag == "Fraction2")
         {
 
-            if (Scoring.score <= 20)
+            if (Scoring.score <= 15)
             {
                 randomFraction = 0;
             }
-            else if (Scoring.score >= 20)
+            else if (Scoring.score >= 16)
             {
                 randomFraction = Random.Range(0, 5);
             }
@@ -226,7 +199,7 @@ public class FractionSelect : MonoBehaviour
         {
             Debug.Log("Hit Fraction 3 show me");
             //        SlowMo();
-            if (Scoring.score <= 20)
+            if (Scoring.score <= 15)
             {
                 randomFraction = Random.Range(0, 2);
 
@@ -239,7 +212,7 @@ public class FractionSelect : MonoBehaviour
                     randomFraction = 5;
                 }
             }
-            else if (Scoring.score >= 20)
+            else if (Scoring.score >= 16)
             {
                 randomFraction = Random.Range(0, 10);
             }
@@ -350,7 +323,7 @@ public class FractionSelect : MonoBehaviour
         {
              Debug.Log("Hit Fraction 4 show me");
             ///      SlowMo();
-            if (Scoring.score <= 20)
+            if (Scoring.score <= 15)
             {
                 randomFraction = Random.Range(0, 2);
 
@@ -363,7 +336,7 @@ public class FractionSelect : MonoBehaviour
                     randomFraction = 5;
                 }
             }
-            else if (Scoring.score >= 20)
+            else if (Scoring.score >= 16)
             {
                 randomFraction = Random.Range(0, 9);
             }

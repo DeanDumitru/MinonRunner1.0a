@@ -27,6 +27,9 @@ public class HighScoreManager : MonoBehaviour {
 
     public GameObject nameDialog;
 
+    public GameObject GameOverText;
+    public GameObject UsernameOTOTS;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -48,13 +51,10 @@ public class HighScoreManager : MonoBehaviour {
    {
         if(PlayerDestroy.playerDead == true)
         {
+            GameOverText.SetActive(true);
+            UsernameOTOTS.SetActive(false);
             EnterName();
             PlayerDestroy.playerDead = false;
-        }
-        if (Input.GetKeyDown(KeyCode.Escape)) //If we press escape then we want to show or hide the entername dialog
-        {
-            nameDialog.SetActive(!nameDialog.activeSelf);
-
         }
 	}
 

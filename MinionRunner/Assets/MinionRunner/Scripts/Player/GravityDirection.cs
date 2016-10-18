@@ -17,7 +17,7 @@ public class GravityDirection : MonoBehaviour
                 Ray ray = new Ray(transform.position, -Vector3.up);
                 RaycastHit hit;
            //      Debug.DrawLine(transform.position, Vector3.forward, Color.red);
-        //  if (Physics.Raycast(ray, out hit, 1.5f) == true)
+      
                 if (Physics.Raycast(ray, out hit,  1.5f) == true)
                 {
 

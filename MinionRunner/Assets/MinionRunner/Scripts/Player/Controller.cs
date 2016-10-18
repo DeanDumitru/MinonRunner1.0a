@@ -17,37 +17,41 @@ public class Controller : MonoBehaviour
     Vector3 movement;
     Animator anim;
     Rigidbody playerRigidbody;
+    
 
-    int floorMask;
+    public VirtualJoystick moveJoystick;
 
-  //  public Rigidbody bullet;
- //   public Transform shotSpawn;
+    int floorMask = 0;
 
     private float nextJump;
-   // private float nextFire;
+
 
     void Awake()
     {
         floorMask = LayerMask.GetMask("Floor");
         anim = GetComponent<Animator>();
         playerRigidbody = GetComponent<Rigidbody>();
-        //    shot = ball.GetComponent<Rigidbody>();
     }
 
 
     void FixedUpdate()
     {
-       // Bullet();
-
         Jumping();
 
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        // if (setActive == true)
-        //{
-        Move(h, v);
-        Animating(h, v);
-        // }
+        Vector3 dir = Vector3.zero;
+
+        dir.x = Input.GetAxisRaw("Horizontal");
+        dir.z = Input.GetAxisRaw("Vertical");
+
+        if (dir.magnitude > 1)
+            dir.Normalize();
+
+        if (moveJoystick.InputDirection != Vector3.zero)
+        {
+            dir = moveJoystick.InputDirection;
+        }
+        Move(dir.x, dir.z);
+        Animating(dir.x, dir.z);
     }
 
     void Move(float h, float v)
@@ -56,7 +60,7 @@ public class Controller : MonoBehaviour
         movement = movement.normalized * speed * Time.deltaTime; // time between every call
         playerRigidbody.MovePosition(transform.localPosition + movement);
     }
-
+    
     void Animating(float h, float v)
     {
         bool walking = h != 0f || v != 0f;
@@ -65,6 +69,7 @@ public class Controller : MonoBehaviour
 
     private void Jumping()
     {
+
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextJump)
         {
             nextJump = Time.time + jumpRate;
@@ -72,19 +77,12 @@ public class Controller : MonoBehaviour
         }
     }
 
- /*   public Vector3 angleShot = new Vector3(0, 0, 0);
-    public float angles;
-
-    private void Bullet()
+    public void buttonJump()
     {
-        if (Input.GetKeyDown(KeyCode.Y) && Time.time > nextFire)
+        if (Time.time > nextJump)
         {
-            Rigidbody clone;
-            nextFire = Time.time + fireRate;
-            clone = Instantiate(bullet, shotSpawn.position, shotSpawn.rotation) as Rigidbody;
-            //clone.velocity = transform.forward * power;
-            clone.GetComponent<Rigidbody>().AddForce(angleShot * power, ForceMode.Impulse);
+            nextJump = Time.time + jumpRate;
+            playerRigidbody.AddForce(transform.up * jump, ForceMode.Impulse);
         }
     }
-    */
 }
