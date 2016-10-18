@@ -122,6 +122,9 @@ public class FractionSelect : MonoBehaviour
 
     public int randomFraction = 0;
 
+    public AudioSource rightAnswerAudio;
+    public AudioSource wrongAnswerAudio;
+
    
     void OnTriggerEnter(Collider other) // show the fractions 
     {
@@ -686,11 +689,17 @@ public class FractionSelect : MonoBehaviour
             Debug.Log(UserClass.player.enteredFraction);
             DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, "0", true);
             GameObject.Find("Check Answer Button").SetActive(false);
+     //       rightAnswerAudio = GetComponent<AudioSource>();
+            rightAnswerAudio.Play();
+            
+
+
 
         }
         else
         {
             DataBaseManager.writeSuccess(UserClass.player.givenFraction, checkInput.ToString(), "0", false);
+            wrongAnswerAudio.Play();
         }
 
         //   
@@ -719,6 +728,7 @@ public class FractionSelect : MonoBehaviour
             slider2ndCheck[sliderSelect].value = 0;
 
             DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, true);
+            rightAnswerAudio.Play();
 
         }
         else
@@ -727,6 +737,7 @@ public class FractionSelect : MonoBehaviour
             Invoke("Reset2", resetTime);
 
             DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, check2ndInput.ToString(), false);
+            wrongAnswerAudio.Play();
 
         }
 

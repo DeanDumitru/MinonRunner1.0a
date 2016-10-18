@@ -1672,6 +1672,109 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &27352754
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 27352755}
+  - 82: {fileID: 27352756}
+  m_Layer: 0
+  m_Name: RightAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &27352755
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 27352754}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1982619339}
+  m_RootOrder: 3
+--- !u!82 &27352756
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 27352754}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 52320e590bf774734a288886eba557ba, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &30704196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2717,6 +2820,10 @@ Prefab:
       propertyPath: nextJump
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 11426332, guid: 02a48867d3a77fc4f95fd1fcbf8b8eef, type: 2}
+      propertyPath: jumpAudio
+      value: 
+      objectReference: {fileID: 288907952}
     m_RemovedComponents:
     - {fileID: 8260494, guid: 02a48867d3a77fc4f95fd1fcbf8b8eef, type: 2}
     - {fileID: 11402572, guid: 02a48867d3a77fc4f95fd1fcbf8b8eef, type: 2}
@@ -7747,7 +7854,7 @@ RectTransform:
   m_Children:
   - {fileID: 117885894}
   m_Father: {fileID: 688042647}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 5, y: 5}
@@ -9696,7 +9803,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &244238623
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10736,6 +10843,109 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 285694710}
+--- !u!1 &288907951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 288907953}
+  - 82: {fileID: 288907952}
+  m_Layer: 0
+  m_Name: JumpAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &288907952
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 288907951}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2c5292ba5cf254919a6b9e2b18e04f49, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &288907953
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 288907951}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 344.91742, y: 128.42538, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1982619339}
+  m_RootOrder: 2
 --- !u!1 &293444630
 GameObject:
   m_ObjectHideFlags: 0
@@ -12124,6 +12334,109 @@ MonoBehaviour:
   - {fileID: 711964893}
   - {fileID: 476430706}
   - {fileID: 1234860191}
+--- !u!1 &326185151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 326185152}
+  - 82: {fileID: 326185153}
+  m_Layer: 0
+  m_Name: WrongAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &326185152
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 326185151}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 1982619339}
+  m_RootOrder: 4
+--- !u!82 &326185153
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 326185151}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 79e6baad2fd414b82a6d49ce1568d2e5, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &327280450
 GameObject:
   m_ObjectHideFlags: 0
@@ -13247,7 +13560,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &378041508
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24259,7 +24572,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &673187902
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24576,6 +24889,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
+  - {fileID: 1975023715}
   - {fileID: 188757052}
   - {fileID: 994561701}
   - {fileID: 1624886468}
@@ -24585,7 +24899,6 @@ RectTransform:
   - {fileID: 360250519}
   - {fileID: 724106248}
   - {fileID: 1909886479}
-  - {fileID: 1975023715}
   - {fileID: 1792278106}
   - {fileID: 142576384}
   - {fileID: 434256635}
@@ -26274,7 +26587,7 @@ RectTransform:
   - {fileID: 151038763}
   - {fileID: 1618316615}
   m_Father: {fileID: 688042647}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -28449,7 +28762,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22481720, guid: b2b95e881e81c0844b46815ab6ae7857, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 22481720, guid: b2b95e881e81c0844b46815ab6ae7857, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -33465,7 +33778,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &938997425
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34309,7 +34622,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &964523975
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -34383,7 +34696,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &965709920
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -35221,7 +35534,7 @@ RectTransform:
   m_Children:
   - {fileID: 1812767995}
   m_Father: {fileID: 688042647}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -48.87494, y: 51}
@@ -40188,7 +40501,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1168823285
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -43241,7 +43554,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1234860194
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -44161,7 +44474,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1263831749
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -44447,7 +44760,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1268719530
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -45820,7 +46133,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 688042647}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 302.6, y: -68.3}
@@ -47852,7 +48165,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1385299589
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -47994,7 +48307,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1387182386
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -49210,7 +49523,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22465572, guid: 3c2ae3a19ae24fc4d9d6173221a609ca, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 22465572, guid: 3c2ae3a19ae24fc4d9d6173221a609ca, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -55395,7 +55708,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1589903931
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -56905,7 +57218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 688042647}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 75.29999, y: -32.100006}
@@ -57759,7 +58072,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1643218342
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -60008,7 +60321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1714587799
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -61935,7 +62248,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1760861654
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -64424,7 +64737,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1846399594
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -65258,7 +65571,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1874547686
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -65914,7 +66227,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1888745945
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -66146,7 +66459,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1894743773
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -67289,7 +67602,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 688042647}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -28.73}
@@ -69435,7 +69748,7 @@ RectTransform:
   m_Children:
   - {fileID: 1755758381}
   m_Father: {fileID: 688042647}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 9.003113, y: -18.550003}
@@ -69582,6 +69895,9 @@ Transform:
   m_Children:
   - {fileID: 2013939206}
   - {fileID: 1818235678}
+  - {fileID: 288907953}
+  - {fileID: 27352755}
+  - {fileID: 326185152}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!114 &1982619340
@@ -70184,7 +70500,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &1989768698
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -72775,7 +73091,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &2055070356
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -74368,7 +74684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 688042647}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 2.2999878, y: -32.099976}
@@ -74598,7 +74914,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: NOW INPUT THE REDUCED FRACTION INTO THE SLIDER;
+  m_Text: 'SHOW THE FRACTION IN A DIFFERENT WAY: '
 --- !u!222 &2110444508
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -74904,6 +75220,7 @@ GameObject:
   - 65: {fileID: 2124437878}
   - 54: {fileID: 2124437880}
   - 114: {fileID: 2124437881}
+  - 82: {fileID: 2124437879}
   m_Layer: 0
   m_Name: FractionDetection
   m_TagString: Detector
@@ -74937,6 +75254,80 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.028216938, y: 0.21673542, z: 87.87237}
   m_Center: {x: 0.006157954, y: -0.39163235, z: 43.435123}
+--- !u!82 &2124437879
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2124437876}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!54 &2124437880
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -75114,6 +75505,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4ebc4bc6bd117484caf216ffe42c9dee, type: 3}
   - {fileID: 21300000, guid: f200a08b6170eeb4a9f5e0586677700c, type: 3}
   randomFraction: 0
+  rightAnswerAudio: {fileID: 27352756}
+  wrongAnswerAudio: {fileID: 326185153}
   checkAnswer: 0
   checkInput: 0
   check2ndInput: 0

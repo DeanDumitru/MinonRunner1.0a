@@ -24,6 +24,7 @@ public class Controller : MonoBehaviour
 
     public float nextJump;
 
+    public AudioSource jumpAudio;
 
     void Awake()
     {
@@ -72,6 +73,7 @@ public class Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && GravityDirection.playergrounded == true)
         {           
             playerRigidbody.AddForce(transform.up * jump, ForceMode.Impulse);
+            jumpAudio.Play();
         }
 
     }
@@ -81,6 +83,8 @@ public class Controller : MonoBehaviour
         if (GravityDirection.playergrounded == true)
         {
             playerRigidbody.AddForce(transform.up * jump, ForceMode.Impulse);
+            jumpAudio.Play();
+
         }
     }
 }
