@@ -5,6 +5,7 @@ public class GravityDirection : MonoBehaviour
 {
 
     public bool grounded;
+    public static bool playergrounded;
     private Vector3 posCur;
     private Quaternion rotCur;
     RaycastHit hit;
@@ -27,17 +28,18 @@ public class GravityDirection : MonoBehaviour
                     posCur = new Vector3(transform.position.x, hit.point.y, transform.position.z);
 
                     grounded = true;
+                    playergrounded = true;
 
                 }
                 else
                 {
                     grounded = false;
+                    playergrounded = false;
                 }
 
 
                 if (grounded == true)
                 {
-
                     transform.position = Vector3.Lerp(transform.position, posCur, Time.deltaTime * 5);
                     transform.rotation = Quaternion.Lerp(transform.rotation, rotCur, Time.deltaTime * 5);
                 }

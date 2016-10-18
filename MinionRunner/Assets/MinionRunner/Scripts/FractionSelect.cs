@@ -685,6 +685,8 @@ public class FractionSelect : MonoBehaviour
         {
             Debug.Log(UserClass.player.enteredFraction);
             DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, "0", true);
+            GameObject.Find("Check Answer Button").SetActive(false);
+
         }
         else
         {
@@ -707,8 +709,7 @@ public class FractionSelect : MonoBehaviour
 
         if (Mathf.Abs(check2ndInput - checkInput) < 0.08)
         {
-            //GameObject.Find("Check Answer Button").SetActive(true);
-            GameObject.Find("Slider (2)").SetActive(false);
+            GameObject.Find("Slider (2)").SetActive(true);
             resetAnimation = true;
             inputPanels[sliderSelect].gameObject.SetActive(false);
             RightWrongAnswer.GetComponent<Image>().overrideSprite = right[Random.Range(0, 5)];

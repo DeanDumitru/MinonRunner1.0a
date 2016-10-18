@@ -9,7 +9,6 @@ public class Controller : MonoBehaviour
     public float jump;
     public float jumpRate;
  //   public float fireRate;
-    public float power;
 
     [HideInInspector]
     public static bool setActive;
@@ -23,7 +22,7 @@ public class Controller : MonoBehaviour
 
     int floorMask = 0;
 
-    private float nextJump;
+    public float nextJump;
 
 
     void Awake()
@@ -70,18 +69,17 @@ public class Controller : MonoBehaviour
     private void Jumping()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextJump)
-        {
-            nextJump = Time.time + jumpRate;
+        if (Input.GetKeyDown(KeyCode.Space) && GravityDirection.playergrounded == true)
+        {           
             playerRigidbody.AddForce(transform.up * jump, ForceMode.Impulse);
         }
+
     }
 
     public void buttonJump()
     {
-        if (Time.time > nextJump)
+        if (GravityDirection.playergrounded == true)
         {
-            nextJump = Time.time + jumpRate;
             playerRigidbody.AddForce(transform.up * jump, ForceMode.Impulse);
         }
     }
