@@ -1,4 +1,18 @@
-﻿using UnityEngine;
+﻿/********************************************************         
+ *       Scripted and Designed for MinionRunner         *   
+ *                                                      *   
+ *       Authors:  Christoph Drechsler                  *
+ *                 Dean Dumitru                         *
+ *                                                      *
+ *       Contact: drechslerc@uindy.edu                  *
+ *                dumitrud@uindy.edu                    *   
+ *                                                      *   
+ *                                                      *   
+ *               All Rights Reserved.                   *   
+ *                                                      *   
+ ********************************************************/
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -66,6 +80,7 @@ public class inputCheck : MonoBehaviour {
            // UserClass.player.success = true;
            // UserClass.player.score = -1;
            // UserClass.player.hintId = "Succesfully created a new user";
+
 
           //  UserClass.record.Add(UserClass.player);
           //  UserClass.player.printUserMain();

@@ -1,4 +1,18 @@
-﻿using UnityEngine;
+﻿/********************************************************         
+ *       Scripted and Designed for MinionRunner         *   
+ *                                                      *   
+ *       Authors:  Christoph Drechsler                  *
+ *                 Dean Dumitru                         *
+ *                                                      *
+ *       Contact: drechslerc@uindy.edu                  *
+ *                dumitrud@uindy.edu                    *   
+ *                                                      *   
+ *                                                      *   
+ *               All Rights Reserved.                   *   
+ *                                                      *   
+ ********************************************************/
+
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -9,7 +23,7 @@ public class TabFields : MonoBehaviour
 
 	void Start()
 	{
-		system = EventSystem.current;// EventSystemManager.currentSystem;
+		system = EventSystem.current;
 
 	}
 

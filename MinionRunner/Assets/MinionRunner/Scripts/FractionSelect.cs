@@ -1,4 +1,18 @@
-﻿
+﻿/********************************************************         
+ *       Scripted and Designed for MinionRunner         *   
+ *                                                      *   
+ *       Authors:  Christoph Drechsler                  *
+ *                 Dean Dumitru                         *
+ *                                                      *
+ *       Contact: drechslerc@uindy.edu                  *
+ *                dumitrud@uindy.edu                    *   
+ *                                                      *   
+ *                                                      *   
+ *               All Rights Reserved.                   *   
+ *                                                      *   
+ ********************************************************/
+
+
 /*
 const string zero = "2/4";
 const string one = "3/6";

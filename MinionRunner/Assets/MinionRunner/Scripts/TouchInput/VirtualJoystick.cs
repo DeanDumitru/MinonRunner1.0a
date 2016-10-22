@@ -1,4 +1,18 @@
-﻿using UnityEngine;
+﻿/********************************************************         
+ *       Scripted and Designed for MinionRunner         *   
+ *                                                      *   
+ *       Authors:  Christoph Drechsler                  *
+ *                 Dean Dumitru                         *
+ *                                                      *
+ *       Contact: drechslerc@uindy.edu                  *
+ *                dumitrud@uindy.edu                    *   
+ *                                                      *   
+ *                                                      *   
+ *               All Rights Reserved.                   *   
+ *                                                      *   
+ ********************************************************/
+
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;

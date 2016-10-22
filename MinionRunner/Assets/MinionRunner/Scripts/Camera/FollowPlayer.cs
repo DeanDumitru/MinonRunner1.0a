@@ -1,6 +1,17 @@
-﻿// Smooth Follow from Standard Assets
-// Converted to C# because I fucking hate UnityScript and it's inexistant C# interoperability
-// If you have C# code and you want to edit SmoothFollow's vars ingame, use this instead.
+﻿/********************************************************         
+ *       Scripted and Designed for MinionRunner         *   
+ *                                                      *   
+ *       Authors:  Christoph Drechsler                  *
+ *                 Dean Dumitru                         *
+ *                                                      *
+ *       Contact: drechslerc@uindy.edu                  *
+ *                dumitrud@uindy.edu                    *   
+ *                                                      *   
+ *                                                      *   
+ *               All Rights Reserved.                   *   
+ *                                                      *   
+ ********************************************************/
+
 using UnityEngine;
 using System.Collections;
 
