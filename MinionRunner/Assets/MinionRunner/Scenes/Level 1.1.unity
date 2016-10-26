@@ -2710,7 +2710,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11426332, guid: 02a48867d3a77fc4f95fd1fcbf8b8eef, type: 2}
       propertyPath: jump
-      value: 25
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11426332, guid: 02a48867d3a77fc4f95fd1fcbf8b8eef, type: 2}
       propertyPath: jumpRate
