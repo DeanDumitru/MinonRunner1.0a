@@ -701,7 +701,7 @@ public class FractionSelect : MonoBehaviour
         if (AnswerWasRightOrWrong == true)
         {
             Debug.Log(UserClass.player.enteredFraction);
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, "0", true);
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, "0", "0", true);
             GameObject.Find("Check Answer Button").SetActive(false);
      //       rightAnswerAudio = GetComponent<AudioSource>();
             rightAnswerAudio.Play();
@@ -712,7 +712,7 @@ public class FractionSelect : MonoBehaviour
         }
         else
         {
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, checkInput.ToString(), "0", false);
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, checkInput.ToString(), "0", "0", false);
             wrongAnswerAudio.Play();
         }
 
@@ -741,7 +741,7 @@ public class FractionSelect : MonoBehaviour
             Scoring.score = Scoring.score + 5;
             slider2ndCheck[sliderSelect].value = 0;
 
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, true);
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, "0", true);
             rightAnswerAudio.Play();
 
         }
@@ -750,7 +750,7 @@ public class FractionSelect : MonoBehaviour
             RightWrongAnswer.GetComponent<Image>().overrideSprite = wrong[Random.Range(0, 5)];
             Invoke("Reset2", resetTime);
 
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, check2ndInput.ToString(), false);
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, check2ndInput.ToString()," 0", false);
             wrongAnswerAudio.Play();
 
         }

@@ -22,10 +22,11 @@ public class HighScoreScript : MonoBehaviour {
     public GameObject scoreName;
     public GameObject rank;
 
-    public void SetScore(string name, string score, string rank)
+    public void SetScore(string firstName, string lastName, string score, string rank)
     {
+        string name1 = firstName + " " + lastName;
         this.score.GetComponent<Text>().text = score;
-        this.scoreName.GetComponent<Text>().text = name;
+        this.scoreName.GetComponent<Text>().text = name1;
         this.rank.GetComponent<Text>().text = rank;
     }
 }

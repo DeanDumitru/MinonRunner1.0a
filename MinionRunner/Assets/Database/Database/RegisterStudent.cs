@@ -32,10 +32,10 @@ public class RegisterStudent : MonoBehaviour
         {
             string e = email.text;
             string p = password.text;
-            string u = username.text;
             string f = firstName.text;
             string l = lastName.text;
-            DataBaseManager.registerStudent(e, p, u, f, l, FirstLevelName);
+            string u = f + " " + l;
+            DataBaseManager.registerStudent(e, p, f, l, FirstLevelName);
         }
     }
 

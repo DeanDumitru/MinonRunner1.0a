@@ -12,7 +12,8 @@ class HighScore : IComparable<HighScore>
     /// <summary>
     /// The name of the highscores owner
     /// </summary>
-    public string Name { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
 
     /// <summary>
     /// The date the highscore was made
@@ -24,10 +25,11 @@ class HighScore : IComparable<HighScore>
     /// </summary>
     public int ID { get; set; }
 
-    public HighScore(int id, int score, string name, DateTime date)
+    public HighScore(int id, int score, string firstName, string lastName, DateTime date)
     {
         this.Score = score;
-        this.Name = name;
+        this.FirstName = firstName;
+        this.LastName = lastName;
         this.ID = id;
         this.Date = date;
     }

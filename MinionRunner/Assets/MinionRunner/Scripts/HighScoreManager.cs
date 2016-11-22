@@ -1,17 +1,25 @@
-﻿using UnityEngine;
+﻿using Mono.Data.Sqlite;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine;
 using System.Collections;
 using System;
 using System.Data;
-using Mono.Data.Sqlite;
-using System.Collections.Generic;
-using UnityEngine.UI;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 /// <summary>
 /// This script handles all communication with the database
 /// </summary>
-public class HighScoreManager : MonoBehaviour {
+public class HighScoreManager : MonoBehaviour
+{
 
-    private string connectionString;
+    private string connectionString =
+            "Server=uindyrdb.cbr0wyxiy6tj.us-west-2.rds.amazonaws.com;" +
+            "Database=uindyrdb;" +
+            "UserID=uindyRDB;" +
+            "Password=Usef1234;";
+    //"Pooling=false";
 
     private List<HighScore> highScores = new List<HighScore>();
 
@@ -30,62 +38,52 @@ public class HighScoreManager : MonoBehaviour {
     public GameObject GameOverText;
     public GameObject UsernameOTOTS;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
-        //Sets the connectionstring as the default datapath inside the assetfolder
-        connectionString = "URI=file:" + Application.dataPath + "/HighScoreDB.sqlite";
-
         //Creates the database if it doesn't exist
         CreateTable();
 
         //Deletes the extra scores
         DeleteExtraScore();
-        
+
         //Shows the scores to the player
         ShowScores();
-	}
-	
-	// Update is called once per frame
-	void Update ()
-   {
-        if(PlayerDestroy.playerDead == true)
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (PlayerDestroy.playerDead == true)
         {
             GameOverText.SetActive(true);
             UsernameOTOTS.SetActive(false);
             EnterName();
             PlayerDestroy.playerDead = false;
         }
-	}
+    }
 
     /// <summary>
     /// Creates a table if it doesn't exist
     /// </summary>
     /// 
 
-  
+
     private void CreateTable()
     {
-        //Creates the connection
-        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        IDbConnection dbcon;
+        using (dbcon = new MySqlConnection(connectionString))
         {
-            //Opens the connection
-            dbConnection.Open();
-
-            //Creates a command so that we can execute it on the database
-            using (IDbCommand dbCmd = dbConnection.CreateCommand()) 
+            dbcon.Open();
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
                 //Create the query 
-                string sqlQuery = String.Format("CREATE TABLE if not exists HighScores (PlayerID INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL  UNIQUE , Name TEXT NOT NULL , Score INTEGER NOT NULL , Date DATETIME NOT NULL  DEFAULT CURRENT_DATE)");
-
-                //Gives the sqlQuery to the command
-                dbCmd.CommandText = sqlQuery;
-
-                //Executes the commnad
-                dbCmd.ExecuteScalar();
-
-                //Closes the connections
-                dbConnection.Close();
+                {
+                    string sqlQuery = String.Format("CREATE TABLE IF NOT EXISTS HighScores(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),FirstName VARCHAR(16) NOT NULL,LastName VARCHAR(16) NOT NULL, Score INT NOT NULL , Date DATETIME DEFAULT   CURRENT_TIMESTAMP)");
+                    dbcmd.CommandText = sqlQuery;
+                    dbcmd.ExecuteScalar();
+                    dbcon.Close();
+                }
             }
         }
     }
@@ -96,13 +94,13 @@ public class HighScoreManager : MonoBehaviour {
     public void EnterName()
     {
 
-            int score = Scoring.score; 
+        int score = Scoring.score;
 
-            InsertScore(UserClass.player.userId, score); //Inserts the score in the database
+        InsertScore(UserClass.player.firstName, UserClass.player.lastName, score); //Inserts the score in the database
 
-            enterName.text = string.Empty; //resets the textfield
+        enterName.text = string.Empty; //resets the textfield
 
-            ShowScores(); //Gets the scores form the database
+        ShowScores(); //Gets the scores form the database
 
     }
 
@@ -111,7 +109,7 @@ public class HighScoreManager : MonoBehaviour {
     /// </summary>
     /// <param name="name">The name of the player</param>
     /// <param name="newScore">The player's score</param>
-    private void InsertScore(string name, int newScore)
+    private void InsertScore(string firstName, string lastName, int newScore)
     {
         GetScores(); //Gets the scores from the database
 
@@ -132,22 +130,17 @@ public class HighScoreManager : MonoBehaviour {
         if (hsCount < saveScores) //If there is room on the highscore list, then insert a new score
         {
             //Creates a database connection
-            using (IDbConnection dbConnection = new SqliteConnection(connectionString)) 
+            IDbConnection dbcon;
+            using (dbcon = new MySqlConnection(connectionString))
             {
-                //Opens the connection
-                dbConnection.Open();
-
-                //Creates a database comment
-                using (IDbCommand dbCmd = dbConnection.CreateCommand())
+                dbcon.Open();
+                using (IDbCommand dbcmd = dbcon.CreateCommand())
                 {
                     //Creates a query for inserting the new score
-                    string sqlQuery = String.Format("INSERT INTO HighScores(Name,Score) VALUES(\"{0}\",\"{1}\")", name, newScore);
-                    
-                    dbCmd.CommandText = sqlQuery; //Gives the query to the commandtext
-                    dbCmd.ExecuteScalar(); //Executes the query
-                    dbConnection.Close();//Closes the connetcion
-
-
+                    string sqlQuery = String.Format("INSERT INTO HighScores(FirstName, LastName, Score) VALUES(\"{0}\",\"{1}\",\"{2}\")", firstName, lastName, newScore);
+                    dbcmd.CommandText = sqlQuery;
+                    dbcmd.ExecuteScalar();
+                    dbcon.Close();
                 }
             }
         }
@@ -162,32 +155,36 @@ public class HighScoreManager : MonoBehaviour {
         highScores.Clear();
 
         //Creates a database connection
-        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        IDbConnection dbcon;
+        using (dbcon = new MySqlConnection(connectionString))
         {
-            //Opens the connection
-            dbConnection.Open();
-
-            //Creates a database comment
-            using (IDbCommand dbCmd = dbConnection.CreateCommand())
+            dbcon.Open();
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
                 //Selects everything from the highscores
                 string sqlQuery = "SELECT * FROM HighScores";
 
                 //feeds the query to the command
-                dbCmd.CommandText = sqlQuery;
+                dbcmd.CommandText = sqlQuery;
 
-                //Creates a reader and executes it so that we can load the highscores
-                using (IDataReader reader = dbCmd.ExecuteReader())
+                using (IDataReader reader = dbcmd.ExecuteReader())
                 {
-                    while (reader.Read()) //As long as we have something to read
+                    while (reader.Read())
                     {
-                        //Adds  the new highscore to the highscore list
-                        highScores.Add(new HighScore(reader.GetInt32(0), reader.GetInt32(2), reader.GetString(1), reader.GetDateTime(3)));
+                        string FirstName = (string)reader["FirstName"];
+                        string LastName = (string)reader["LastName"];
+                        int id = (int)reader["id"];
+                        int score = (int)reader["Score"];
+                        DateTime date = (DateTime)reader["Date"];
+
+                        highScores.Add(new HighScore(id, score, FirstName, LastName, date));
+                        //Creates a reader and executes it so that we can load the highscores
                     }
 
-                    //Closes the connection
-                    dbConnection.Close();
-                    reader.Close();
+                        //Closes the connection
+                        dbcon.Close();
+                        reader.Close();
+                    
                 }
             }
         }
@@ -195,36 +192,30 @@ public class HighScoreManager : MonoBehaviour {
         highScores.Sort(); //Sorts the highscore from highest to lowest
     }
 
-    /// <summary>
-    /// Deletes a specific entry in the database
-    /// </summary>
-    /// <param name="id">The scores database id</param>
     private void DeleteScore(int id)
     {
-        //Creates a database connection
-        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        IDbConnection dbcon;
+        using (dbcon = new MySqlConnection(connectionString))
         {
-            dbConnection.Open(); //Opens the connection
-
-            //Creates a database command
-            using (IDbCommand dbCmd = dbConnection.CreateCommand())
+            dbcon.Open();
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
                 //Creates a query
                 string sqlQuery = String.Format("DELETE FROM HighScores WHERE PlayerID = \"{0}\"", id);
 
                 //Feeds the query to the command
-                dbCmd.CommandText = sqlQuery;
+                dbcmd.CommandText = sqlQuery;
 
                 //Executes the command
-                dbCmd.ExecuteScalar();
+                dbcmd.ExecuteScalar();
 
                 //Closes the connection
-                dbConnection.Close();
-
-
+                dbcon.Close();
             }
         }
     }
+
+
 
     /// <summary>
     /// Shows the scores to the player
@@ -249,7 +240,7 @@ public class HighScoreManager : MonoBehaviour {
                 HighScore tmpScore = highScores[i]; //Gets the current highscore
 
                 //Sets the objects score
-                tmpObjec.GetComponent<HighScoreScript>().SetScore(tmpScore.Name, tmpScore.Score.ToString(), "#" + (i + 1).ToString());
+                tmpObjec.GetComponent<HighScoreScript>().SetScore(tmpScore.FirstName, tmpScore.LastName, tmpScore.Score.ToString(), "#" + (i + 1).ToString());
 
                 tmpObjec.transform.SetParent(scoreParent); //Sets the score of the parent
 
@@ -272,11 +263,10 @@ public class HighScoreManager : MonoBehaviour {
 
             highScores.Reverse(); //Reverses the order so that it is easier for us to delete the lowest scores
 
-            using (IDbConnection dbConnection = new SqliteConnection(connectionString)) //Creates a connection
+            using (IDbConnection dbcon = new MySqlConnection(connectionString))
             {
-                dbConnection.Open(); //Opens the connection
-
-                using (IDbCommand dbCmd = dbConnection.CreateCommand()) //Creates a command
+                dbcon.Open();
+                using (IDbCommand dbcmd = dbcon.CreateCommand())
                 {
                     for (int i = 0; i < deleteCount; i++) //Deletes the scores
                     {
@@ -284,12 +274,12 @@ public class HighScoreManager : MonoBehaviour {
                         string sqlQuery = String.Format("DELETE FROM HighScores WHERE PlayerID = \"{0}\"", highScores[i].ID);
 
                         //Feeds the query to the commandText
-                        dbCmd.CommandText = sqlQuery;
+                        dbcmd.CommandText = sqlQuery;
 
-                        dbCmd.ExecuteScalar(); //Executes the command
+                        dbcmd.ExecuteScalar(); //Executes the command
                     }
 
-                    dbConnection.Close(); //Closes the connection
+                    dbcon.Close(); //Closes the connection
 
 
                 }

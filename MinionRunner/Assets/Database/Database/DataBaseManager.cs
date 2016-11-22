@@ -1,92 +1,138 @@
-   /********************************************************         
-    *       Scripted and Designed for MinionRunner         *   
-    *                                                      *   
-    *       Authors:  Christoph Drechsler                  *
-    *                 Dean Dumitru                         *
-    *                                                      *
-    *       Contact: drechslerc@uindy.edu                  *
-    *                dumitrud@uindy.edu                    *   
-    *                                                      *   
-    *                                                      *   
-    *               All Rights Reserved.                   *   
-    *                                                      *   
-    ********************************************************/
+/********************************************************         
+ *       Scripted and Designed for MinionRunner         *   
+ *                                                      *   
+ *       Authors:  Christoph Drechsler                  *
+ *                 Dean Dumitru                         *
+ *                                                      *
+ *       Contact: drechslerc@uindy.edu                  *
+ *                dumitrud@uindy.edu                    *   
+ *                                                      *   
+ *                                                      *   
+ *               All Rights Reserved.                   *   
+ *                                                      *   
+ ********************************************************/
 
 using UnityEngine;
 using System.Collections;
 using System;
 using System.Data;
-using Mono.Data.Sqlite;
-using System.Collections.Generic;
-using UnityEngine.UI;
+using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 using UnityEngine.SceneManagement;
 
-public class DataBaseManager : MonoBehaviour {
+public class DataBaseManager : MonoBehaviour
+{
 
     public static bool notInDB = false;
     public static bool notCorrect = false;
     public GameObject notInDBText;
     public GameObject notCorrectText;
 
-    private static string connectionString;
+    private static string connectionString =
+            "Server=uindyrdb.cbr0wyxiy6tj.us-west-2.rds.amazonaws.com;" +
+            "Database=uindyrdb;" +
+            "UserID=uindyRDB;" +
+            "Password=Usef1234;";
+    //"Pooling=false";
 
-    void Start() 
-	{
-        connectionString = "URI=file:" + Application.dataPath + "/StudentDB.s3db";
-		CreateTable ();
-    }
-		
-    void Update()
+
+
+    void Start()
     {
-        if (notCorrect == true)
-            notCorrectText.SetActive(true);
-        else notCorrectText.SetActive(false);
 
-        if (notInDB == true)
-            notInDBText.SetActive(true);
-        else notInDBText.SetActive(false);
+        CreateTable();
+
+        /*
+        IDbConnection dbcon;
+
+        using (dbcon = new MySqlConnection(connectionString))
+        {
+            dbcon.Open();
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
+            {
+                string sql =
+                    "SELECT name, email, password " +
+                    "FROM Studentpi";
+                dbcmd.CommandText = sql;
+                using (IDataReader reader = dbcmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        string FirstName = (string)reader["name"];
+                        string LastName = (string)reader["email"];
+                        string UserName = (string)reader["password"];
+                        Debug.Log(FirstName + LastName + UserName);
+                    }
+                }
+            }
+        }*/
+
+
     }
-		
+
     private void CreateTable()
     {
-        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        IDbConnection dbcon;
+        using (dbcon = new MySqlConnection(connectionString))
         {
-            dbConnection.Open();
-            using (IDbCommand dbCmd = dbConnection.CreateCommand())
+            dbcon.Open();
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
-                string sqlQuery = String.Format("CREATE TABLE if not exists StudentPI (Email TEXT PRIMARY KEY NOT NULL  UNIQUE , Password TEXT NOT NULL, Username TEXT NOT NULL, FirstName TEXT NOT NULL, LastName TEXT NOT NULL)");
-                dbCmd.CommandText = sqlQuery;
-                dbCmd.ExecuteScalar();
-                dbConnection.Close();
+                {
+                    string sqlQuery = String.Format("CREATE TABLE IF NOT EXISTS StudentPI(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),FirstName VARCHAR(16) NOT NULL,LastName VARCHAR(16) NOT NULL,email TEXT,password TEXT);");
+                    dbcmd.CommandText = sqlQuery;
+                    dbcmd.ExecuteScalar();
+                    dbcon.Close();
+                }
             }
-        }
-		using (IDbConnection dbConnection = new SqliteConnection(connectionString))
-		{
-			dbConnection.Open();
-			using (IDbCommand dbCmd = dbConnection.CreateCommand())
-			{
-				string sqlQuery = String.Format("CREATE TABLE if not exists StudentRecords (Email TEXT  NOT NULL, GivenFraction TEXT  NOT NULL, EnteredFraction TEXT  NOT NULL, EnteredReducedFraction TEXT  NOT NULL, Success BOOLEAN  NOT NULL)");
-				dbCmd.CommandText = sqlQuery;
-				dbCmd.ExecuteScalar();
-				dbConnection.Close();
-			}
-		}
-    }
-		
-    private static void InsertStudent(string email, string password, string username, string firstName, string lastName, string level)
-    {
-        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
-        {
-            dbConnection.Open();
-            using (IDbCommand dbCmd = dbConnection.CreateCommand())
+            IDbConnection dbcon1;
+            using (dbcon1 = new MySqlConnection(connectionString))
             {
-                string sqlQuery = String.Format("INSERT INTO StudentPI (Email,Password,Username,FirstName,LastName) VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")", email, password, username, firstName, lastName);
-                dbCmd.CommandText = sqlQuery; 
-                dbCmd.ExecuteScalar(); 
-                dbConnection.Close();
+                dbcon1.Open();
+                using (IDbCommand dbcmd1 = dbcon1.CreateCommand())
+                {
+                    string sqlQuery = String.Format("CREATE TABLE IF NOT EXISTS StudentRecords(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),FirstName VARCHAR(16) NOT NULL,LastName VARCHAR(16) NOT NULL, GivenFraction TEXT  NOT NULL, EnteredFraction TEXT  NOT NULL, EnteredReducedFraction TEXT  NOT NULL, EnteredDragFraction TEXT NOT NULL,Success BOOLEAN DEFAULT NULL)");
+                    dbcmd1.CommandText = sqlQuery;
+                    dbcmd1.ExecuteScalar();
+                    dbcon1.Close();
+                }
+            }
 
+            /*
+            using (dbcon = new MySqlConnection(connectionString))
+            {
+                dbcon.Open();
+                using (IDbCommand dbcmd = dbcon.CreateCommand())
+                {
+                    {
+                        string email = "dean";
+                        string password = "dean";
+                        string username = "dean";
+
+                        string sqlQuery = String.Format("INSERT INTO Studentpi (name,email,password) VALUES(\"{0}\",\"{1}\",\"{2}\")",username, email, password);
+                        dbcmd.CommandText = sqlQuery;
+                        dbcmd.ExecuteScalar();
+                        dbcon.Close();
+                    }
+                }
+            }*/
+        }
+    }
+
+    private static void InsertStudent(string email, string password, string firstName, string lastName, string level)
+    {
+        using (IDbConnection dbcon = new MySqlConnection(connectionString))
+        {
+            dbcon.Open();
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
+            {
+                string sqlQuery = String.Format("INSERT INTO StudentPI (FirstName,LastName,email,password) VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\")", firstName, lastName, email, password);
+                dbcmd.CommandText = sqlQuery;
+                dbcmd.ExecuteScalar();
+                dbcon.Close();
             }
         }
+
         SceneManager.LoadScene(level);
     }
 
@@ -94,27 +140,32 @@ public class DataBaseManager : MonoBehaviour {
     {
         string e = null;
         string p = null;
-        string u = null;
         string f = null;
+        string u = null;
         string l = null;
         int ok = 0;
 
-        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        using (IDbConnection dbcon = new MySqlConnection(connectionString))
         {
-            dbConnection.Open();
-            using (IDbCommand dbCmd = dbConnection.CreateCommand())
+            dbcon.Open();
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
-                string sqlQuery = "SELECT * FROM StudentPI";
-                dbCmd.CommandText = sqlQuery;
-                using (IDataReader reader = dbCmd.ExecuteReader())
+                string sql =
+                    "SELECT * " +
+                    "FROM StudentPI";
+
+                dbcmd.CommandText = sql;
+                using (IDataReader reader = dbcmd.ExecuteReader())
                 {
-					while (reader.Read())
+                    while (reader.Read())
                     {
-                        e = reader.GetString(0);
-                        p = reader.GetString(1);
-                        u = reader.GetString(2);
-                        f = reader.GetString(3);
-                        l = reader.GetString(4);
+                        f = (string)reader["FirstName"];
+                        l = (string)reader["LastName"];
+                        e = (string)reader["email"];
+                        p = (string)reader["password"];
+                       
+                        u = f + " " + l;
+
 
                         if (e == email && p == password)
                         {
@@ -134,13 +185,13 @@ public class DataBaseManager : MonoBehaviour {
                     else if ((e == email && p != password) || (e != email && p == password))
                         denyLogin();
                     else requireRegister();
-                    dbConnection.Close();
+                    dbcon.Close();
                     reader.Close();
                 }
             }
         }
-
     }
+
     static void allowLogin(string email, string level)
     {
         /////// ERROR: Database is Locked 
@@ -156,9 +207,10 @@ public class DataBaseManager : MonoBehaviour {
             }
         }*/
         /////////////////////////////
-        
+
         SceneManager.LoadScene(level);
     }
+
     static void denyLogin()
     {
         notCorrect = true;
@@ -167,42 +219,28 @@ public class DataBaseManager : MonoBehaviour {
     {
         notInDB = true;
     }
-		
-    private static void DeleteStudent(string email)
+
+    private static void InsertStudentRecord(string givenFraction, string enteredFraction, string enteredRFraction, string enteredDragFraction, bool success)
     {
-        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
+        string fn = UserClass.player.firstName;
+        string ln = UserClass.player.lastName;
+
+        using (IDbConnection dbcon = new MySqlConnection(connectionString))
         {
-            dbConnection.Open();
-            using (IDbCommand dbCmd = dbConnection.CreateCommand())
+            dbcon.Open();
+            using (IDbCommand dbcmd = dbcon.CreateCommand())
             {
-                string sqlQuery = String.Format("DELETE FROM StudentPI WHERE Email = \"{0}\"", email);
-                dbCmd.CommandText = sqlQuery;
-                dbCmd.ExecuteScalar();
-                dbConnection.Close();
+                string sqlQuery = String.Format("INSERT INTO StudentRecords (FirstName,LastName,GivenFraction,EnteredFraction,EnteredReducedFraction,EnteredDragFraction,Success) VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\",\"{5}\",\"{6}\")", fn, ln, givenFraction, enteredFraction, enteredRFraction, enteredDragFraction, success);
+                dbcmd.CommandText = sqlQuery;
+                dbcmd.ExecuteScalar();
+                dbcon.Close();
             }
         }
     }
 
-    private static void InsertStudentRecord(string givenFraction, string enteredFraction, string enteredRFraction, bool success)
+    public static void registerStudent(string email, string password, string firstName, string lastName, string level)
     {
-        string email = UserClass.player.email;
-
-        using (IDbConnection dbConnection = new SqliteConnection(connectionString))
-        {
-            dbConnection.Open();
-            using (IDbCommand dbCmd = dbConnection.CreateCommand())
-            {
-                string sqlQuery = String.Format("INSERT INTO StudentRecords (Email,GivenFraction,EnteredFraction,EnteredReducedFraction,Success) VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\",\"{4}\")", email, givenFraction, enteredFraction, enteredRFraction, success);
-                dbCmd.CommandText = sqlQuery;
-                dbCmd.ExecuteScalar();
-                dbConnection.Close();
-            }
-        }
-    }
-
-    public static void registerStudent(string email, string password, string username, string firstName, string lastName, string level)
-    {
-        InsertStudent(email, password, username, firstName, lastName, level);
+        InsertStudent(email, password, firstName, lastName, level);
     }
 
     public static void loginStudent(string email, string password, string level)
@@ -210,13 +248,8 @@ public class DataBaseManager : MonoBehaviour {
         GetStudent(email, password, level);
     }
 
-    public static void deleteStudent(string email)
+    public static void writeSuccess(string givenFraction, string enteredFraction, string enteredRFraction, string enteredDragFraction, bool success)
     {
-        DeleteStudent(email);
-    }
-
-    public static void writeSuccess(string givenFraction, string enteredFraction, string enteredRFraction, bool success)
-    {
-        InsertStudentRecord(givenFraction, enteredFraction, enteredRFraction, success);
+        InsertStudentRecord(givenFraction, enteredFraction, enteredRFraction, enteredDragFraction, success);
     }
 }
