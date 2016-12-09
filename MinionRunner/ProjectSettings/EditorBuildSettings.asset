@@ -21,3 +21,5 @@ EditorBuildSettings:
     path: Assets/SpriteSlicer2D/Demo/1-4.unity
   - enabled: 1
     path: Assets/SpriteSlicer2D/Demo/3-4.unity
+  - enabled: 1
+    path: Assets/LoadingScreen/_LoadingScene.unity

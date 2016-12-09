@@ -150,7 +150,7 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 8ec3c927a50f94efd816239ba91118fd, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 3
     m_MaxSize: 48
     m_Alignment: 0
@@ -405,8 +405,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 884633301}
-  - 114: {fileID: 884633302}
   - 114: {fileID: 884633303}
+  - 114: {fileID: 884633302}
   m_Layer: 5
   m_Name: GameObject
   m_TagString: Untagged
@@ -440,7 +440,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 884633300}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4d495354a2bcff4480bf653cfdcb1f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 0444d737dd2d2b74197b337bace2a64a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &884633303
@@ -607,12 +607,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 884633302}
-        m_MethodName: Click
-        m_Mode: 5
+        m_MethodName: LoadSceneNum
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: Level 1.1
           m_BoolArgument: 0

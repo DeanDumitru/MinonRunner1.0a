@@ -139,6 +139,10 @@ public class FractionSelect : MonoBehaviour
     public AudioSource rightAnswerAudio;
     public AudioSource wrongAnswerAudio;
 
+    //DragNDropSection
+    public Slider[] dragNdropReducedSliders;
+    public GameObject[] dragNdDropComponentsToActivate;
+
    
     void OnTriggerEnter(Collider other) // show the fractions 
     {
@@ -701,7 +705,7 @@ public class FractionSelect : MonoBehaviour
         if (AnswerWasRightOrWrong == true)
         {
             Debug.Log(UserClass.player.enteredFraction);
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, "0", "0", true);
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, "0", "0", 0);
             GameObject.Find("Check Answer Button").SetActive(false);
      //       rightAnswerAudio = GetComponent<AudioSource>();
             rightAnswerAudio.Play();
@@ -712,7 +716,7 @@ public class FractionSelect : MonoBehaviour
         }
         else
         {
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, checkInput.ToString(), "0", "0", false);
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, checkInput.ToString(), "0", "0", 0);
             wrongAnswerAudio.Play();
         }
 
@@ -741,22 +745,58 @@ public class FractionSelect : MonoBehaviour
             Scoring.score = Scoring.score + 5;
             slider2ndCheck[sliderSelect].value = 0;
 
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, "0", true);
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, "0", 0);
             rightAnswerAudio.Play();
-
+            //Call drag and drop check
+            checkDragNDrop(UserClass.player.enteredRFraction, check2ndInput);
         }
         else
         {
             RightWrongAnswer.GetComponent<Image>().overrideSprite = wrong[Random.Range(0, 5)];
             Invoke("Reset2", resetTime);
 
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, check2ndInput.ToString()," 0", false);
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, check2ndInput.ToString(),"0", 0);
             wrongAnswerAudio.Play();
 
         }
+    }
 
-        
-        
+    public static string answerToBeChecked;
+    private void checkDragNDrop(string correctFraction, float sliderValue)
+    {
+        answerToBeChecked = correctFraction;
+
+        foreach (GameObject i in dragNdDropComponentsToActivate)
+            i.SetActive(true);
+
+        foreach (Slider i in dragNdropReducedSliders)
+            i.gameObject.SetActive(false);
+
+        if(correctFraction == "1/2")
+        {
+            dragNdropReducedSliders[0].gameObject.SetActive(true);
+            dragNdropReducedSliders[0].value = sliderValue;
+        }
+        else if(correctFraction == "1/3")
+        {
+            dragNdropReducedSliders[1].gameObject.SetActive(true);
+            dragNdropReducedSliders[1].value = sliderValue;
+        }
+        else if(correctFraction == "1/4")
+        {
+            dragNdropReducedSliders[2].gameObject.SetActive(true);
+            dragNdropReducedSliders[2].value = sliderValue;
+        }
+        else if(correctFraction == "2/3")
+        {
+            dragNdropReducedSliders[3].gameObject.SetActive(true);
+            dragNdropReducedSliders[3].value = sliderValue;
+        }
+        else if(correctFraction == "3/4")
+        {
+            dragNdropReducedSliders[4].gameObject.SetActive(true);
+            dragNdropReducedSliders[4].value = sliderValue;
+        }
     }
 
     /*  public void gameOver()

@@ -91,7 +91,7 @@ public class DataBaseManager : MonoBehaviour
                 dbcon1.Open();
                 using (IDbCommand dbcmd1 = dbcon1.CreateCommand())
                 {
-                    string sqlQuery = String.Format("CREATE TABLE IF NOT EXISTS StudentRecords(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),FirstName VARCHAR(16) NOT NULL,LastName VARCHAR(16) NOT NULL, GivenFraction TEXT  NOT NULL, EnteredFraction TEXT  NOT NULL, EnteredReducedFraction TEXT  NOT NULL, EnteredDragFraction TEXT NOT NULL,Success BOOLEAN DEFAULT NULL)");
+                    string sqlQuery = String.Format("CREATE TABLE IF NOT EXISTS StudentRecords(id INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(id),FirstName VARCHAR(16) NOT NULL,LastName VARCHAR(16) NOT NULL, GivenFraction TEXT  NOT NULL, EnteredFraction TEXT  NOT NULL, EnteredReducedFraction TEXT  NOT NULL, EnteredDragFraction TEXT NOT NULL,Success INT DEFAULT NULL)");
                     dbcmd1.CommandText = sqlQuery;
                     dbcmd1.ExecuteScalar();
                     dbcon1.Close();
@@ -220,7 +220,7 @@ public class DataBaseManager : MonoBehaviour
         notInDB = true;
     }
 
-    private static void InsertStudentRecord(string givenFraction, string enteredFraction, string enteredRFraction, string enteredDragFraction, bool success)
+    private static void InsertStudentRecord(string givenFraction, string enteredFraction, string enteredRFraction, string enteredDragFraction, int success)
     {
         string fn = UserClass.player.firstName;
         string ln = UserClass.player.lastName;
@@ -248,7 +248,7 @@ public class DataBaseManager : MonoBehaviour
         GetStudent(email, password, level);
     }
 
-    public static void writeSuccess(string givenFraction, string enteredFraction, string enteredRFraction, string enteredDragFraction, bool success)
+    public static void writeSuccess(string givenFraction, string enteredFraction, string enteredRFraction, string enteredDragFraction, int success)
     {
         InsertStudentRecord(givenFraction, enteredFraction, enteredRFraction, enteredDragFraction, success);
     }
