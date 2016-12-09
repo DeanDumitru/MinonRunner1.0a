@@ -46,6 +46,7 @@ public class ToolHandler : MonoBehaviour {
     public GameObject[] chocolateBars;
     public GameObject SpawnPoint;
     public GameObject bar;
+    public GameObject MainCamera;
 
     public void button_colors()
     {
@@ -125,6 +126,7 @@ public class ToolHandler : MonoBehaviour {
         CutterObjectHolder.SetActive(false);
     }
 
+  
     public void ActivateDrag()
     {
       //  index = 0;
@@ -134,6 +136,7 @@ public class ToolHandler : MonoBehaviour {
         }
 
         CutterObjectHolder.SetActive(false);
+        MainCamera.GetComponent<DrawLine>().enabled = false;
 
     }
 
@@ -142,6 +145,7 @@ public class ToolHandler : MonoBehaviour {
     {
        // index = 1;
         CutterObjectHolder.SetActive(true);
+        MainCamera.GetComponent<DrawLine>().enabled = true;
     }
 
 

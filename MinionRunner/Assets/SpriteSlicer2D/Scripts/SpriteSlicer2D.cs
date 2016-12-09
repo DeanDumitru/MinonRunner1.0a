@@ -96,6 +96,8 @@ public static class SpriteSlicer2D
 	/// <param name="slicedObjectInfo">A list of SpriteSlicer2DSliceInfo that will be fill out with details about slice locations, slcied objects, and created child objects.</param>
 	public static void SliceAllSprites(Vector3 worldStartPoint, Vector3 worldEndPoint, bool destroySlicedObjects, ref List<SpriteSlicer2DSliceInfo> slicedObjectInfo)
 	{
+        worldStartPoint = DrawLine.CuttingStartPosition;
+        worldEndPoint = DrawLine.CuttingEndPosition;
 		LayerMask layerMask = -1;
 		SliceSpritesInternal(worldStartPoint, worldEndPoint, null, 0, destroySlicedObjects, -1, ref slicedObjectInfo, layerMask, null);
 	}
@@ -847,7 +849,7 @@ public static class SpriteSlicer2D
 	{
 		GameObject childObject = new GameObject();
 		slicedSprite = childObject.AddComponent<SlicedSprite>();
-
+     //   slicedSprite.transform.position.z = 3;
 		// Child sprites should inherit the rigid body behaviour of their parents
 		Rigidbody2D childRigidBody = slicedSprite.GetComponent<Rigidbody2D>();
 		childRigidBody.mass = parentRigidBody.mass * (childArea/parentArea);
