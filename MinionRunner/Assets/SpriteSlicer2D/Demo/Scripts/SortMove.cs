@@ -1,25 +1,40 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class SortMove : MonoBehaviour
 {
 
-    public GameObject[] slicedObjects;
-    public GameObject SlicedParent;
+    public GameObject Gravity;
+    public GameObject Lines;
+    public GameObject Cutting;
+
+    private GameObject destroyLine;
 
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetMouseButtonUp(0))
         {
-            slicedObjects = new GameObject[SlicedParent.transform.childCount];
-            for (int i = 0; i < SlicedParent.transform.childCount; i++)
-            {
-                slicedObjects[i] = SlicedParent.transform.GetChild(i).gameObject;
-            }
-
-
-
-
+            StartCoroutine(LineDestroy());
         }
+        else if(Input.GetKeyDown(KeyCode.M))
+        {
+            Gravity.SetActive(true);
+            StartCoroutine(LateCall());
+        }
+    }
+
+
+    IEnumerator LateCall()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        Gravity.SetActive(false);
+    }
+
+    IEnumerator LineDestroy()
+    {
+        yield return new WaitForSeconds(1f);
+
+        GameObject.Destroy(Lines.transform.GetChild(0).gameObject);
     }
 }
