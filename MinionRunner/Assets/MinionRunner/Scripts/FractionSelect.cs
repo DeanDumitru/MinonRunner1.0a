@@ -144,8 +144,14 @@ public class FractionSelect : MonoBehaviour
     public GameObject[] dragNdDropComponentsToActivate;
 
    
+    private System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+    public static System.Diagnostics.Stopwatch totalStopwatch = new System.Diagnostics.Stopwatch();
     void OnTriggerEnter(Collider other) // show the fractions 
     {
+        
+        stopwatch.Start();
+        totalStopwatch.Start();
+
         FractionSelect.resetAnimation = false;
         //      GameObject.Find("Slider 1").GetComponent<Animator>().Play("Idle", -1, 0f);
 
@@ -689,12 +695,10 @@ public class FractionSelect : MonoBehaviour
     }
 
     public float checkInput;
-    public static System.Diagnostics.Stopwatch totalStopwatch = new System.Diagnostics.Stopwatch();
+    
     public void Submit1stSlider()
     {
-        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-        stopwatch.Start();
-        totalStopwatch.Start();
+        
 
         Debug.Log(sliderValue[sliderSelect].value);
 
@@ -739,9 +743,6 @@ public class FractionSelect : MonoBehaviour
     public static bool resetAnimation = false;
     public void Submit2ndSlider()
     {
-        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-        stopwatch.Start();
-
         Debug.Log(slider2ndCheck[sliderSelect].value);
 
         check2ndInput = slider2ndCheck[sliderSelect].value;

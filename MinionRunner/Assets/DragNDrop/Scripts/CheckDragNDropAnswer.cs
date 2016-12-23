@@ -17,8 +17,7 @@ public class CheckDragNDropAnswer : MonoBehaviour
 
     public void ClickToCheckAnswer()
     {
-        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
-        stopwatch.Start();
+        
         Debug.Log("Button Clicked!");
 
         correctAnswer = FractionSelect.answerToBeChecked;
@@ -39,11 +38,11 @@ public class CheckDragNDropAnswer : MonoBehaviour
             foreach (Slider i in dragNdropReducedSliders)
                 i.gameObject.SetActive(false);
 
-            stopwatch.Stop();
+            FractionSelect.stopwatchDnD.Stop();
             FractionSelect.totalStopwatch.Stop();
-            float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
+            float timeTaken = 0.001f * FractionSelect.stopwatchDnD.ElapsedMilliseconds;
             float totalTimeTaken = 0.001f * FractionSelect.totalStopwatch.ElapsedMilliseconds;
-            stopwatch.Reset();
+            FractionSelect.stopwatchDnD.Reset();
             FractionSelect.totalStopwatch.Reset();
 
             DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, enteredAnswer, 1, timeTaken, totalTimeTaken);
