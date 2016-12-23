@@ -17,6 +17,8 @@ public class CheckDragNDropAnswer : MonoBehaviour
 
     public void ClickToCheckAnswer()
     {
+        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+        stopwatch.Start();
         Debug.Log("Button Clicked!");
 
         correctAnswer = FractionSelect.answerToBeChecked;
@@ -37,14 +39,26 @@ public class CheckDragNDropAnswer : MonoBehaviour
             foreach (Slider i in dragNdropReducedSliders)
                 i.gameObject.SetActive(false);
 
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, enteredAnswer, 1);
+            stopwatch.Stop();
+            FractionSelect.totalStopwatch.Stop();
+            float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
+            float totalTimeTaken = 0.001f * FractionSelect.totalStopwatch.ElapsedMilliseconds;
+            stopwatch.Reset();
+            FractionSelect.totalStopwatch.Reset();
+
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, enteredAnswer, 1, timeTaken, totalTimeTaken);
         }
 
         else
         {
+            stopwatch.Stop();
+            FractionSelect.totalStopwatch.Stop();
+            float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
+            stopwatch.Reset();
+
             wrongAnswerAudio.Play();
             Debug.Log("Answer is not correct!");
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, enteredAnswer, 0);
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, enteredAnswer, 0, timeTaken, 0);
         }
     }
 }

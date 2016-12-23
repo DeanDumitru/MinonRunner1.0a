@@ -689,8 +689,13 @@ public class FractionSelect : MonoBehaviour
     }
 
     public float checkInput;
+    public static System.Diagnostics.Stopwatch totalStopwatch = new System.Diagnostics.Stopwatch();
     public void Submit1stSlider()
     {
+        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+        stopwatch.Start();
+        totalStopwatch.Start();
+
         Debug.Log(sliderValue[sliderSelect].value);
 
         checkInput = sliderValue[sliderSelect].value;
@@ -704,8 +709,11 @@ public class FractionSelect : MonoBehaviour
 
         if (AnswerWasRightOrWrong == true)
         {
+            stopwatch.Stop();
+            float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
+            stopwatch.Reset();
             Debug.Log(UserClass.player.enteredFraction);
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, "0", "0", 0);
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, "0", "0", 0, timeTaken, 0);
             GameObject.Find("Check Answer Button").SetActive(false);
      //       rightAnswerAudio = GetComponent<AudioSource>();
             rightAnswerAudio.Play();
@@ -716,7 +724,10 @@ public class FractionSelect : MonoBehaviour
         }
         else
         {
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, checkInput.ToString(), "0", "0", 0);
+            stopwatch.Stop();
+            float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
+            stopwatch.Reset();
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, checkInput.ToString(), "0", "0", 0, timeTaken, 0);
             wrongAnswerAudio.Play();
         }
 
@@ -728,6 +739,9 @@ public class FractionSelect : MonoBehaviour
     public static bool resetAnimation = false;
     public void Submit2ndSlider()
     {
+        System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+        stopwatch.Start();
+
         Debug.Log(slider2ndCheck[sliderSelect].value);
 
         check2ndInput = slider2ndCheck[sliderSelect].value;
@@ -745,7 +759,11 @@ public class FractionSelect : MonoBehaviour
             Scoring.score = Scoring.score + 5;
             slider2ndCheck[sliderSelect].value = 0;
 
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, "0", 0);
+            stopwatch.Stop();
+            float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
+            stopwatch.Reset();
+
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, "0", 0, timeTaken, 0);
             rightAnswerAudio.Play();
             //Call drag and drop check
             checkDragNDrop(UserClass.player.enteredRFraction, check2ndInput);
@@ -755,7 +773,11 @@ public class FractionSelect : MonoBehaviour
             RightWrongAnswer.GetComponent<Image>().overrideSprite = wrong[Random.Range(0, 5)];
             Invoke("Reset2", resetTime);
 
-            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, check2ndInput.ToString(),"0", 0);
+            stopwatch.Stop();
+            float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
+            stopwatch.Reset();
+
+            DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, check2ndInput.ToString(),"0", 0, timeTaken, 0);
             wrongAnswerAudio.Play();
 
         }
