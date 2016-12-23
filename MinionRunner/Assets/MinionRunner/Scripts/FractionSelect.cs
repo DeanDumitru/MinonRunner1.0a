@@ -785,8 +785,10 @@ public class FractionSelect : MonoBehaviour
     }
 
     public static string answerToBeChecked;
+    public static System.Diagnostics.Stopwatch stopwatchDnD = new System.Diagnostics.Stopwatch();
     private void checkDragNDrop(string correctFraction, float sliderValue)
     {
+        stopwatchDnD.Start();
         answerToBeChecked = correctFraction;
 
         foreach (GameObject i in dragNdDropComponentsToActivate)
