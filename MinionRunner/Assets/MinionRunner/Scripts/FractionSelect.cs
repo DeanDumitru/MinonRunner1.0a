@@ -713,7 +713,6 @@ public class FractionSelect : MonoBehaviour
 
         if (AnswerWasRightOrWrong == true)
         {
-            stopwatch.Stop();
             float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
             stopwatch.Reset();
             Debug.Log(UserClass.player.enteredFraction);
@@ -728,9 +727,7 @@ public class FractionSelect : MonoBehaviour
         }
         else
         {
-            stopwatch.Stop();
             float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
-            stopwatch.Reset();
             DataBaseManager.writeSuccess(UserClass.player.givenFraction, checkInput.ToString(), "0", "0", 0, timeTaken, 0);
             wrongAnswerAudio.Play();
         }
@@ -774,9 +771,7 @@ public class FractionSelect : MonoBehaviour
             RightWrongAnswer.GetComponent<Image>().overrideSprite = wrong[Random.Range(0, 5)];
             Invoke("Reset2", resetTime);
 
-            stopwatch.Stop();
             float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
-            stopwatch.Reset();
 
             DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, check2ndInput.ToString(),"0", 0, timeTaken, 0);
             wrongAnswerAudio.Play();

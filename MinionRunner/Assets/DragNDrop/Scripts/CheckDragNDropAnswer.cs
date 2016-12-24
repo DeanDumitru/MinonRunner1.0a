@@ -50,10 +50,10 @@ public class CheckDragNDropAnswer : MonoBehaviour
 
         else
         {
-            stopwatch.Stop();
+            FractionSelect.stopwatchDnD.Stop();
             FractionSelect.totalStopwatch.Stop();
-            float timeTaken = 0.001f * stopwatch.ElapsedMilliseconds;
-            stopwatch.Reset();
+            float timeTaken = 0.001f * FractionSelect.stopwatchDnD.ElapsedMilliseconds;
+            FractionSelect.stopwatchDnD.Reset();
 
             wrongAnswerAudio.Play();
             Debug.Log("Answer is not correct!");
