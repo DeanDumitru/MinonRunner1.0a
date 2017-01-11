@@ -54,6 +54,7 @@ public class CuttingManager : MonoBehaviour
     const int NrFractions = 67;
     private int fractionCounter = 1;
     private int textCounter = 1;
+    private int currentFraction;
 
     private string givenFration;
 
@@ -79,15 +80,16 @@ public class CuttingManager : MonoBehaviour
     {
         foreach (int i in ap)
             ap[i] = 0;
-        TitleText.text = "Cut the following fraction: " + fractions[textCounter];
-        givenFration = fractions[textCounter];
+        TitleText.text = "Cut the following fraction: " + fractions[1];
+        givenFration = fractions[1];
 
         Debug.Log(givenFration);
 
-        textCounter++;
-        fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter++], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+        //textCounter++;
+        fractionStrip = (GameObject)Instantiate(fractionStrips[1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
         fractionStrip.transform.parent = bar.transform;
         SpawnPoint.SetActive(false);
+        ap[1] = 1;
     }
 
     public void button_colors()
@@ -130,17 +132,19 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
-            else Debug.Log("Incorrect");
+            else 
             {
+                Debug.Log("Incorrect");
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter-1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
 
 
@@ -172,12 +176,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "2/3")
         {
@@ -199,7 +204,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -208,11 +213,12 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                ////Destroy(fractionStrip);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
 
         if (givenFration == "1/4")
@@ -243,12 +249,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "2/4")
         {
@@ -278,12 +285,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "3/4")
         {
@@ -313,12 +321,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
 
         if (givenFration == "1/5")
@@ -349,12 +358,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "2/5")
         {
@@ -376,7 +386,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -385,12 +395,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+               // //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "3/5")
         {
@@ -412,7 +423,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -421,12 +432,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "4/5")
         {
@@ -448,7 +460,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -457,12 +469,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
 
         if (givenFration == "1/6")
@@ -485,7 +498,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -494,12 +507,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "2/6")
         {
@@ -521,7 +535,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -530,12 +544,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "3/6")
         {
@@ -557,7 +572,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -566,12 +581,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "4/6")
         {
@@ -593,7 +609,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -602,12 +618,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "5/6")
         {
@@ -629,7 +646,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -638,12 +655,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+               // //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
 
         if (givenFration == "1/7")
@@ -666,7 +684,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -675,12 +693,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "2/7")
         {
@@ -702,7 +721,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -711,12 +730,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "3/7")
         {
@@ -738,7 +758,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -747,12 +767,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "4/7")
         {
@@ -774,7 +795,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -783,12 +804,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "5/7")
         {
@@ -810,7 +832,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -819,12 +841,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }  
         if (givenFration == "6/7")
         {
@@ -846,7 +869,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -855,12 +878,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
 
         if (givenFration == "1/8")
@@ -883,7 +907,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -892,12 +916,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "2/8")
         {
@@ -919,7 +944,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -928,12 +953,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "3/8")
         {
@@ -955,7 +981,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -964,12 +990,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "4/8")
         {
@@ -991,7 +1018,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1000,12 +1027,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "5/8")
         {
@@ -1027,7 +1055,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1036,12 +1064,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "6/8")
         {
@@ -1063,7 +1092,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1072,12 +1101,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "7/8")
         {
@@ -1099,7 +1129,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1108,12 +1138,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
 
         if (givenFration == "1/9")
@@ -1136,7 +1167,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1145,12 +1176,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "2/9")
         {
@@ -1172,7 +1204,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1181,12 +1213,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "3/9")
         {
@@ -1208,7 +1241,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1217,12 +1250,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }  
         if (givenFration == "4/9")
         {
@@ -1244,7 +1278,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1253,12 +1287,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "5/9")
         {
@@ -1280,7 +1315,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1289,12 +1324,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "6/9")
         {
@@ -1316,7 +1352,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1325,12 +1361,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "7/9")
         {
@@ -1352,7 +1389,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1361,12 +1398,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "8/9")
         {
@@ -1388,7 +1426,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1397,12 +1435,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                ////Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
 
         if (givenFration == "1/10")
@@ -1425,7 +1464,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1434,12 +1473,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "2/10")
         {
@@ -1461,7 +1501,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1470,12 +1510,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "3/10")
         {
@@ -1497,7 +1538,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1506,12 +1547,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "4/10")
         {
@@ -1533,7 +1575,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1542,12 +1584,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "5/10")
         {
@@ -1569,7 +1612,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1578,12 +1621,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "6/10")
         {
@@ -1605,7 +1649,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1614,12 +1658,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "7/10")
         {
@@ -1641,7 +1686,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1650,12 +1695,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "8/10")
         {
@@ -1677,7 +1723,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1686,12 +1732,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "9/10")
         {
@@ -1713,7 +1760,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1722,12 +1769,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
 
         if (givenFration == "1/11")
@@ -1750,7 +1798,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1759,12 +1807,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "2/11")
         {
@@ -1786,7 +1835,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1795,12 +1844,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "3/11")
         {
@@ -1822,7 +1872,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1831,12 +1881,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "4/11")
         {
@@ -1858,7 +1909,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1867,12 +1918,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "5/11")
         {
@@ -1894,7 +1946,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1903,12 +1955,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "6/11")
         {
@@ -1930,7 +1983,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1939,12 +1992,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "7/11")
         {
@@ -1966,7 +2020,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -1975,12 +2029,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "8/11")
         {
@@ -2002,7 +2057,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2011,12 +2066,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "9/11")
         {
@@ -2038,7 +2094,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2047,12 +2103,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "10/11")
         {
@@ -2074,7 +2131,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2083,12 +2140,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
 
         if (givenFration == "1/12")
@@ -2111,7 +2169,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2120,12 +2178,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "2/12")
         {
@@ -2147,7 +2206,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2156,12 +2215,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "3/12")
         {
@@ -2183,7 +2243,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2192,12 +2252,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "4/12")
         {
@@ -2219,7 +2280,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2228,12 +2289,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "5/12")
         {
@@ -2255,7 +2317,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2264,12 +2326,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "6/12")
         {
@@ -2291,7 +2354,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2300,12 +2363,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "7/12")
         {
@@ -2327,7 +2391,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2336,12 +2400,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "8/12")
         {
@@ -2363,7 +2428,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2372,12 +2437,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "9/12")
         {
@@ -2399,7 +2465,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2408,12 +2474,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "10/12")
         {
@@ -2435,7 +2502,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2444,12 +2511,13 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            return;
         }
         if (givenFration == "11/12")
         {
@@ -2471,7 +2539,7 @@ public class CuttingManager : MonoBehaviour
             if (ok == 1)
             {
                 spawnNextFraction();
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
@@ -2480,18 +2548,19 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
 
-                Destroy(fractionStrip);
+                //Destroy(fractionStrip);
                 SpawnPoint.SetActive(true);
-                fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
         }
+        return;
     }
 
     void spawnNextFraction()
     {
-        if (num + 1 == denom)
+        /*if (num + 1 == denom)
         {
             TitleText.text = "Cut the following fraction: " + fractions[textCounter];
             givenFration = fractions[textCounter];
@@ -2502,7 +2571,7 @@ public class CuttingManager : MonoBehaviour
             num = 1;
             denom++;
 
-            Destroy(fractionStrip);
+            //Destroy(fractionStrip);
             SpawnPoint.SetActive(true);
             fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter++], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
             fractionStrip.transform.parent = bar.transform;
@@ -2524,7 +2593,117 @@ public class CuttingManager : MonoBehaviour
             fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter++], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
             fractionStrip.transform.parent = bar.transform;
             SpawnPoint.SetActive(false);*/
+        //}
+
+        Random.seed = (Random.Range(Random.Range(Random.Range(Random.Range(0, 25), Random.Range(324, 5673)), Random.Range(Random.Range(53, 2378), Random.Range(50, 423))), Random.Range(Random.Range(Random.Range(23, 2354), Random.Range(1, 3456)), Random.Range(Random.Range(7, 32421), Random.Range(8, 23472)))));
+
+        int rand = Random.Range(1, 66);
+        TitleText.text = "Cut the following fraction: " + fractions[rand];
+        givenFration = fractions[rand];
+
+        Debug.Log("Random is: " + rand + "\nFraction is: " + fractions[rand]);
+
+
+        if (rand == 1) // 1/2
+        {
+            currentFraction = 1;
+            ////Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);   
         }
+        else if(rand > 1 && rand < 4) // 1/3 2/3
+        {
+            currentFraction = 2;
+            ////Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[2], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);
+        }
+        else if (rand > 3 && rand < 7) // 1/4 - 3/4
+        {
+            currentFraction = 3;
+            // //Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[3], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);
+        }
+        else if (rand > 6 && rand < 11) // 1/5 - 4/5
+        {
+            currentFraction = 4;
+            ////Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[4], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);
+        }
+        else if (rand > 10 && rand < 16) // 1/6 - 5/6
+        {
+            currentFraction = 5;
+            ////Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[5], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);
+        }
+        else if (rand > 15 && rand < 22) // 1/7 - 6/7
+        {
+            currentFraction = 6;
+            ////Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[6], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);
+        }
+        else if (rand > 21 && rand < 29) // 1/8 - 7/8
+        {
+            currentFraction = 7;
+            ////Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[7], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);
+        }
+        else if (rand > 28 && rand < 37) // 1/9 - 8/9
+        {
+            currentFraction = 8;
+            ////Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[8], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);
+        }
+        else if (rand > 36 && rand < 46) // 1/10 - 9/10
+        {
+            currentFraction = 9;
+            ////Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[9], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);
+        }
+        else if (rand > 45 && rand < 56) // 1/11 - 10/11
+        {
+            currentFraction = 10;
+            ////Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[10], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);
+        }
+        else if (rand > 55 && rand < 67) // 1/12 - 11/12
+        {
+            currentFraction = 11;
+            ////Destroy(fractionStrip);
+            SpawnPoint.SetActive(true);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[11], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip.transform.parent = bar.transform;
+            SpawnPoint.SetActive(false);
+        }
+
     }
 
     private bool checkMass(float cutMass, float correctMass, float error)
@@ -2548,9 +2727,9 @@ public class CuttingManager : MonoBehaviour
             /*Destroy((cuts[1] as Transform).gameObject);
             Destroy((cuts[2] as Transform).gameObject);
 
-            Destroy(fractionStrip);
+            //Destroy(fractionStrip);
             SpawnPoint.SetActive(true);
-            fractionStrip = (GameObject)Instantiate(fractionStrips[fractionCounter - 1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+            fractionStrip = (GameObject)Instantiate(fractionStrips[currentFraction], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
             fractionStrip.transform.parent = bar.transform;
             SpawnPoint.SetActive(false);*/
             return false;

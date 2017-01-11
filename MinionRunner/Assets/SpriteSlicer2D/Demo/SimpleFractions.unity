@@ -859,6 +859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CutterObjectHolder: {fileID: 757480806}
+  LinesHolder: {fileID: 1324093806}
   Colors: {fileID: 1632934767}
   TitleText: {fileID: 132216259}
   fractionStrips:
