@@ -1172,96 +1172,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 355627693}
---- !u!1 &444101580
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 444101582}
-  - 114: {fileID: 444101581}
-  m_Layer: 0
-  m_Name: CGF 2D
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &444101581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 444101580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d97a967d72891a34da7d7400ed2c877c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toggleFilterOptions: 0
-  enable: 1
-  shape2D: 2
-  forceType2D: 0
-  forceMode2D: 0
-  size: 2
-  boxSize: {x: 20, y: 20}
-  forcePower: 4
-  constraintProperties:
-    alignToForce: 0
-    alignDirection: 0
-    slerpSpeed: 8
-    gameobjectFilter:
-      gameObjectFilterOptions: 0
-      gameobjectList: []
-    tagFilter:
-      tagFilterOptions: 0
-      tagsList: []
-    layerFilter:
-      layerFilterOptions: 0
-      layerList: []
-  gameobjectFilter:
-    gameObjectFilterOptions: 0
-    gameobjectList: []
-  tagFilter:
-    tagFilterOptions: 0
-    tagsList: []
-  layerFilter:
-    layerFilterOptions: 0
-    layerList: []
-  triggerAreaFilter:
-    triggerAreaFilterOptions: 0
-    triggerArea: {fileID: 0}
-  specialEffect:
-    physicsEffect: 0
-    timeEffected: 0
-    attachedGameObject: {fileID: 0}
-  drawGravityProperties:
-    thickness: 0.05
-    gravityLineMaterial: {fileID: 1719069291}
-    drawGravityForce: 0
-  memoryProperties:
-    seeColliders: 0
-    seeRaycastHits: 0
-    toggleMemoryProperties: 0
-    nonAllocPhysics: 0
-    colliderBuffer: 100
-    raycastHitBuffer: 100
-  colliderListCount: 0
-  raycastHitListCount: 0
---- !u!4 &444101582
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 444101580}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06999993, y: -0.08000016, z: 3}
-  m_LocalScale: {x: 0.5, y: 0.5624997, z: 1}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
 --- !u!1 &462902486
 GameObject:
   m_ObjectHideFlags: 0
@@ -3019,9 +2929,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8757992b57673154998d5fa803f6cffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gravity: {fileID: 444101580}
-  Lines: {fileID: 1324093806}
-  Cutting: {fileID: 1834357724}
+  slicedObjects: []
+  SlicedParent: {fileID: 317972765}
 --- !u!4 &1136470461
 Transform:
   m_ObjectHideFlags: 0
@@ -4625,32 +4534,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1714339315}
---- !u!21 &1719069291
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: GUI/Text Shader
-  m_Shader: {fileID: 10101, guid: 0000000000000000e000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  m_SavedProperties:
-    serializedVersion: 2
-    m_TexEnvs:
-    - first:
-        name: _MainTex
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - first:
-        name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1721106186
 GameObject:
   m_ObjectHideFlags: 0
