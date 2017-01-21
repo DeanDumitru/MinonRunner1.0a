@@ -110,7 +110,7 @@ public class SpriteSlicer2DDemoManager : MonoBehaviour
             m_TrailRenderer.transform.position = trailPosition;
         }
 
-        else if (Input.GetKeyDown(KeyCode.C))
+        else if (Input.GetMouseButtonUp(0))
         {
             for (int loop = 0; loop < m_MousePositions.Count - 1; loop++)
             {
