@@ -2707,7 +2707,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1136470461}
-  - 114: {fileID: 1136470460}
   m_Layer: 0
   m_Name: Sliced
   m_TagString: Untagged
@@ -2715,19 +2714,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1136470460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1136470459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8757992b57673154998d5fa803f6cffc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slicedObjects: []
-  SlicedParent: {fileID: 317972765}
 --- !u!4 &1136470461
 Transform:
   m_ObjectHideFlags: 0
