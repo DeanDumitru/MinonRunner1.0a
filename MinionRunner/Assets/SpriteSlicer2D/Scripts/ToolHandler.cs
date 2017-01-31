@@ -83,7 +83,7 @@ public class ToolHandler : MonoBehaviour {
             Destroy(gameObject.GetComponent<YellowColor>());
             Destroy(gameObject.GetComponent<GreenColor>());
         }
-        CutterObjectHolder.SetActive(false);
+       ////// CutterObjectHolder.SetActive(false);
     }
 
     public void selectColorButtonBlue()
@@ -96,7 +96,7 @@ public class ToolHandler : MonoBehaviour {
             Destroy(gameObject.GetComponent<YellowColor>());
             Destroy(gameObject.GetComponent<GreenColor>());
         }
-        CutterObjectHolder.SetActive(false);
+       // CutterObjectHolder.SetActive(false);
 
     }
 
@@ -110,7 +110,7 @@ public class ToolHandler : MonoBehaviour {
             Destroy(gameObject.GetComponent<BlueColor>());
             Destroy(gameObject.GetComponent<GreenColor>());
         }
-        CutterObjectHolder.SetActive(false);
+      //  CutterObjectHolder.SetActive(false);
     }
 
     public void selectColorButtonGreen()
@@ -123,7 +123,7 @@ public class ToolHandler : MonoBehaviour {
             Destroy(gameObject.GetComponent<YellowColor>());
             Destroy(gameObject.GetComponent<BlueColor>());
         }
-        CutterObjectHolder.SetActive(false);
+       // CutterObjectHolder.SetActive(false);
     }
 
   
@@ -135,8 +135,8 @@ public class ToolHandler : MonoBehaviour {
             child.gameObject.AddComponent<MouseDrag>();
         }
 
-        CutterObjectHolder.SetActive(false);
-        MainCamera.GetComponent<DrawLine>().enabled = false;
+     //   CutterObjectHolder.SetActive(false);
+      //  MainCamera.GetComponent<DrawLine>().enabled = false;
 
     }
 
@@ -148,55 +148,166 @@ public class ToolHandler : MonoBehaviour {
         MainCamera.GetComponent<DrawLine>().enabled = true;
     }
 
+    public GameObject rightAnswer;
+    public GameObject wrongAnswer;
 
+    public IEnumerator WaitFunctionTrue()
+    {
+        rightAnswer.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        rightAnswer.SetActive(false);
+    }
+    public IEnumerator WaitFunctionFalse()
+    {
+        wrongAnswer.SetActive(true);
+        yield return new WaitForSeconds(3f);
+        wrongAnswer.SetActive(false);
+    }
+
+    private float massHalfCut = 0;
+    public void checkSelectedBar()
+    {
+        if (selectedBar == rightBar)
+        {
+            
+            StartCoroutine(WaitFunctionTrue()); 
+            Objects.SetActive(false);
+            // MainMenu.SetActive(true);
+            CutInHalfText.SetActive(true);
+            CutHalfButton.SetActive(true);
+            if (selectedBar == 22)
+            {
+                GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[0], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                chocolateBar.transform.parent = bar.transform;
+                massHalfCut = 0.5f;
+            }
+            else if(selectedBar == 23)
+            {
+                GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                chocolateBar.transform.parent = bar.transform;
+            }
+            else if(selectedBar == 24)
+            {
+                GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[2], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                chocolateBar.transform.parent = bar.transform;
+            }
+            else if(selectedBar ==33)
+            {
+                GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[3], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                chocolateBar.transform.parent = bar.transform;
+            }
+            else if(selectedBar == 34)
+            {
+                GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[4], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                chocolateBar.transform.parent = bar.transform;
+            }
+            else if(selectedBar == 44)
+            {
+                GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[5], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
+                chocolateBar.transform.parent = bar.transform;
+            }
+
+            Destroy(SpawnPoint);
+
+        }
+        else
+        {
+            StartCoroutine(WaitFunctionFalse());          
+        }
+    }
+
+    private float selectedBar = 0;
+    public float rightBar = 0;
 
     public void twoTwo()
-    {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[0], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true); 
+    {      
+        selectedBar = 22f;
+        checkSelectedBar();
     }
     public void twoThree()
     {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
+        checkSelectedBar();
+        selectedBar = 23f;
     }
     public void twoFour()
     {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[2], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
+        checkSelectedBar();
+        selectedBar = 24f;
     }
     public void threeThree()
     {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[3], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
+        checkSelectedBar();
+        selectedBar = 33f;
     }
     public void threeFour()
     {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[4], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
+        checkSelectedBar();
+        selectedBar = 34f;
     }
     public void fourFour()
     {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[5], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
+        checkSelectedBar();
+        selectedBar = 44f;
     }
+
+    private float checkMass = 0;
+
+    public GameObject CutInHalfText;
+    public GameObject CutInQuarters;
+    public GameObject CutHalfButton;
+    public GameObject CutQuarterButton;
+
+    public void checkFirstCut()
+    {
+        checkMass = bar.transform.GetChild(0).GetComponent<Rigidbody2D>().mass;
+        if (massHalfCut - checkMass <= 0.1 && massHalfCut - checkMass >= -0.1)
+        {
+            StartCoroutine(WaitFunctionTrue());
+            CutInHalfText.SetActive(false);
+            colorGreenButton.SetActive(true);
+            colorGreenText.SetActive(true);
+            nextCutButton.SetActive(true);
+            CutHalfButton.SetActive(false);
+        }
+        else
+            StartCoroutine(WaitFunctionFalse());
+    }
+    
+    public GameObject colorGreenButton;
+    public GameObject colorGreenText;
+
+    public void nextAfterColorGreen()
+    {
+        colorGreenButton.SetActive(false);
+        colorGreenText.SetActive(false);
+        CutInQuarters.SetActive(true);
+        nextCutButton.SetActive(false);
+        CutQuarterButton.SetActive(true);
+    }
+
+    public GameObject nextCutButton;
+    public GameObject finalColorRed;
+    public GameObject ColorRedText;
+
+    public void checkSecondCut()
+    {
+        checkMass = bar.transform.GetChild(0).GetComponent<Rigidbody2D>().mass;
+        if (checkMass >= 0.22 && checkMass <= 0.28)
+        {
+            StartCoroutine(WaitFunctionTrue());
+            CutQuarterButton.SetActive(false);
+            CutInQuarters.SetActive(false);
+            finalColorRed.SetActive(true);
+            ColorRedText.SetActive(true);
+        }
+        else
+            StartCoroutine(WaitFunctionFalse());
+        }
+
+    //public GameObject DragAndDrop;
+
+
+
+
 
 }

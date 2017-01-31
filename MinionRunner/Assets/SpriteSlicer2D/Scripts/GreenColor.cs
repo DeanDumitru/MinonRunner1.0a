@@ -8,7 +8,7 @@ public class GreenColor : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(0))
         {
-            this.gameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+            this.gameObject.GetComponent<MeshRenderer>().material.color = Color.yellow*1.5f;
         }
     }
 }
