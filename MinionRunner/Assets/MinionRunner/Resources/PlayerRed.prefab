@@ -406,7 +406,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -428,7 +428,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 0
+    m_RotationOrder: 4
 --- !u!95 &9533274
 Animator:
   serializedVersion: 3
@@ -460,9 +460,7 @@ MonoBehaviour:
   speed: 10
   jump: 20
   jumpRate: 0
-  moveJoystick: {fileID: 0}
-  nextJump: 0
-  jumpAudio: {fileID: 0}
+  power: 0
 --- !u!114 &11450706
 MonoBehaviour:
   m_ObjectHideFlags: 1

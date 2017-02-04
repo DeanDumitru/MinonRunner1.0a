@@ -42,7 +42,7 @@ public class DrawLine : MonoBehaviour
             line.SetPosition(1, mousePos);
 
             CuttingStartPosition = mousePos;
-            CuttingStartPosition.z = 0;
+            CuttingStartPosition.z = -10;
 
             //  line.SetPosition(0, mousePos) = new Vector3 startCutting; 
         }
@@ -83,10 +83,9 @@ public class DrawLine : MonoBehaviour
         //set the number of points to the line
         line.SetVertexCount(2);
         //set the width
-        line.SetWidth(0.80f, 0.80f);
+        line.SetWidth(0.50f, 0.50f);
         //render line to the world origin and not to the object's position
         line.useWorldSpace = true;
-        line.SetColors(Color.black, Color.black);
 
     }
 }
