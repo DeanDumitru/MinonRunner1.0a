@@ -14,12 +14,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Database/_GameScenes/_UserInfo/UserInfoSuccess.unity
   - enabled: 1
+    path: Assets/SpriteSlicer2D/Demo/SimpleFractions.unity
+  - enabled: 1
+    path: Assets/SpriteSlicer2D/Demo/BlankFractions.unity
+  - enabled: 1
     path: Assets/MinionRunner/Scenes/Level 1.1.unity
   - enabled: 1
-    path: Assets/SpriteSlicer2D/Demo/1-2.unity
-  - enabled: 1
-    path: Assets/SpriteSlicer2D/Demo/1-4.unity
-  - enabled: 1
-    path: Assets/SpriteSlicer2D/Demo/3-4.unity
+    path: Assets/SpriteSlicer2D/Demo/Multiplication Example.unity
   - enabled: 1
     path: Assets/LoadingScreen/_LoadingScene.unity

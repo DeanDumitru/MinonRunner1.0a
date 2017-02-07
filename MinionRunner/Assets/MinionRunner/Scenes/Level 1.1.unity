@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.14476278, g: 0.23343095, b: 0.30341658, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2824,6 +2824,10 @@ Prefab:
       propertyPath: jumpAudio
       value: 
       objectReference: {fileID: 288907952}
+    - target: {fileID: 5419112, guid: 02a48867d3a77fc4f95fd1fcbf8b8eef, type: 2}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8260494, guid: 02a48867d3a77fc4f95fd1fcbf8b8eef, type: 2}
     - {fileID: 11402572, guid: 02a48867d3a77fc4f95fd1fcbf8b8eef, type: 2}
