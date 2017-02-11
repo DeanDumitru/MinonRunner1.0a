@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SortMove : MonoBehaviour
 {
+    public TreeInstance Sort;
 
     public GameObject Gravity;
     public GameObject Lines;

@@ -47,6 +47,7 @@ public class ToolHandler : MonoBehaviour {
     public GameObject SpawnPoint;
     public GameObject bar;
     public GameObject MainCamera;
+    
 
     public void button_colors()
     {
@@ -288,6 +289,9 @@ public class ToolHandler : MonoBehaviour {
     public GameObject nextCutButton;
     public GameObject finalColorRed;
     public GameObject ColorRedText;
+    public GameObject DragAndDrop;
+    public GameObject Cutting;
+    public GameObject Gravity;
 
     public void checkSecondCut()
     {
@@ -299,15 +303,20 @@ public class ToolHandler : MonoBehaviour {
             CutInQuarters.SetActive(false);
             finalColorRed.SetActive(true);
             ColorRedText.SetActive(true);
+            DragAndDrop.SetActive(true);
+            Cutting.SetActive(false);
+            MainCamera.GetComponent<DrawLine>().enabled = false;
+            Gravity.SetActive(true);
+            StartCoroutine(LateCall());
         }
         else
             StartCoroutine(WaitFunctionFalse());
         }
+    IEnumerator LateCall()
+    {
+        yield return new WaitForSeconds(0.6f);
 
-    //public GameObject DragAndDrop;
-
-
-
-
-
+        Gravity.SetActive(false);
+    }
 }
+
