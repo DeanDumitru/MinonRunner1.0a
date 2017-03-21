@@ -95,7 +95,7 @@ public class BlankCuttingManager : MonoBehaviour
     {
         foreach (int i in ap)
             ap[i] = 0;
-        TitleText.text = "Cut the following fraction: " + fractions[1];
+        TitleText.text = "CUT THE FOLLOWING FRACTION: " + fractions[1];
         givenFration = fractions[1];
 
         Debug.Log(givenFration);
@@ -2837,7 +2837,7 @@ public class BlankCuttingManager : MonoBehaviour
             if(firstFractionsCounter == 2)
             {
                 currentFraction = 2;
-                TitleText.text = "Cut the following fraction: 1/3";
+                TitleText.text = "CUT THE FOLLOWING FRACTION: 1/3";
                 givenFration = "1/3";
                 correctNumberOfCuts = cutsLeft = 2;
                 firstFractionsCounter++;
@@ -2845,7 +2845,7 @@ public class BlankCuttingManager : MonoBehaviour
             else if (firstFractionsCounter == 3)
             {
                 currentFraction = 3;
-                TitleText.text = "Cut the following fraction: 1/4";
+                TitleText.text = "CUT THE FOLLOWING FRACTION: 1/4";
                 givenFration = "1/4";
                 correctNumberOfCuts = cutsLeft = 3;
                 firstFractionsCounter++;
@@ -2853,7 +2853,7 @@ public class BlankCuttingManager : MonoBehaviour
             else if (firstFractionsCounter == 4)
             {
                 currentFraction = 4;
-                TitleText.text = "Cut the following fraction: 1/5";
+                TitleText.text = "CUT THE FOLLOWING FRACTION: 1/5";
                 givenFration = "1/5";
                 correctNumberOfCuts = cutsLeft = 4;
                 firstFractionsCounter++;
@@ -2861,7 +2861,7 @@ public class BlankCuttingManager : MonoBehaviour
             else if (firstFractionsCounter == 5)
             {
                 currentFraction = 5;
-                TitleText.text = "Cut the following fraction: 1/6";
+                TitleText.text = "CUT THE FOLLOWING FRACTION: 1/6";
                 givenFration = "1/6";
                 correctNumberOfCuts = cutsLeft = 5;
                 firstFractionsCounter++;
@@ -2869,7 +2869,7 @@ public class BlankCuttingManager : MonoBehaviour
             else if (firstFractionsCounter == 6)
             {
                 currentFraction = 6;
-                TitleText.text = "Cut the following fraction: 1/7";
+                TitleText.text = "CUT THE FOLLOWING FRACTION: 1/7";
                 givenFration = "1/7";
                 correctNumberOfCuts = cutsLeft = 6;
                 firstFractionsCounter++;
@@ -2877,7 +2877,7 @@ public class BlankCuttingManager : MonoBehaviour
             else if (firstFractionsCounter == 7)
             {
                 currentFraction = 7;
-                TitleText.text = "Cut the following fraction: 1/8";
+                TitleText.text = "CUT THE FOLLOWING FRACTION: 1/8";
                 givenFration = "1/8";
                 correctNumberOfCuts = cutsLeft = 7;
                 firstFractionsCounter++;
@@ -2885,7 +2885,7 @@ public class BlankCuttingManager : MonoBehaviour
             else if (firstFractionsCounter == 8)
             {
                 currentFraction = 8;
-                TitleText.text = "Cut the following fraction: 1/9";
+                TitleText.text = "CUT THE FOLLOWING FRACTION: 1/9";
                 givenFration = "1/9";
                 correctNumberOfCuts = cutsLeft = 8;
                 firstFractionsCounter++;
@@ -2893,7 +2893,7 @@ public class BlankCuttingManager : MonoBehaviour
             else if (firstFractionsCounter == 9)
             {
                 currentFraction = 9;
-                TitleText.text = "Cut the following fraction: 1/10";
+                TitleText.text = "CUT THE FOLLOWING FRACTION: 1/10";
                 givenFration = "1/10";
                 correctNumberOfCuts = cutsLeft = 9;
                 firstFractionsCounter++;
@@ -2901,7 +2901,7 @@ public class BlankCuttingManager : MonoBehaviour
             else if (firstFractionsCounter == 10)
             {
                 currentFraction = 10;
-                TitleText.text = "Cut the following fraction: 1/11";
+                TitleText.text = "CUT THE FOLLOWING FRACTION: 1/11";
                 givenFration = "1/11";
                 correctNumberOfCuts = cutsLeft = 10;
                 firstFractionsCounter++;
@@ -2909,7 +2909,7 @@ public class BlankCuttingManager : MonoBehaviour
             else if (firstFractionsCounter == 11)
             {
                 currentFraction = 11;
-                TitleText.text = "Cut the following fraction: 1/12";
+                TitleText.text = "CUT THE FOLLOWING FRACTION: 1/12";
                 givenFration = "1/12";
                 correctNumberOfCuts = cutsLeft = 11;
                 firstFractionsCounter++;
@@ -2922,7 +2922,7 @@ public class BlankCuttingManager : MonoBehaviour
             Random.seed = (Random.Range(Random.Range(Random.Range(Random.Range(0, 25), Random.Range(324, 5673)), Random.Range(Random.Range(53, 2378), Random.Range(50, 423))), Random.Range(Random.Range(Random.Range(23, 2354), Random.Range(1, 3456)), Random.Range(Random.Range(7, 32421), Random.Range(8, 23472)))));
 
             int rand = Random.Range(1, 66);
-            TitleText.text = "Cut the following fraction: " + fractions[rand];
+            TitleText.text = "CUT THE FOLLOWING FRACTION: " + fractions[rand];
             givenFration = fractions[rand];
 
             Debug.Log("Random is: " + rand + "\nFraction is: " + fractions[rand]);

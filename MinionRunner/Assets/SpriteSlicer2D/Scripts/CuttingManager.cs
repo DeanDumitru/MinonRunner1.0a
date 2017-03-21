@@ -48,12 +48,12 @@ public class CuttingManager : MonoBehaviour
             "1/9", "2/9", "3/9", "4/9", "5/9", "6/9", "7/9", "8/9",
             "1/10", "2/10", "3/10", "4/10", "5/10", "6/10", "7/10", "8/10", "9/10",
             "1/11", "2/11", "3/11", "4/11", "5/11", "6/11", "7/11", "8/11", "9/11", "10/11",
-            "1/12", "2/12", "3/12", "4/12", "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12" };
+            "1/12", "2/12", "3/12", "4/12", "5/12", "6/12", "7/12", "8/12", "9/12", "10/12", "11/12" }; // this array stores all the possible fractions
 
     private int[] ap = new int[67];
     const int NrFractions = 67;
-    private int fractionCounter = 1;
-    private int textCounter = 1;
+    //private int fractionCounter = 1;
+    //private int textCounter = 1;
     private int currentFraction;
 
     private string givenFration;
@@ -83,28 +83,40 @@ public class CuttingManager : MonoBehaviour
     public GameObject[] okText;
     public GameObject[] noText;
 
+    //Start Function makes sure everything is correct at the beggining of the game
     void Start()
     {
+        //Set the ap array to 0 for all positions
         foreach (int i in ap)
             ap[i] = 0;
-        TitleText.text = "Cut the following fraction: " + fractions[1];
+        //Set the text to the first fraction
+        TitleText.text = "CUT THE FOLLOWING FRACTION: " + fractions[1];
+        //Set the given fraction to the first fraction
         givenFration = fractions[1];
 
         Debug.Log(givenFration);
 
         //textCounter++;
+        //Spawn the first fraction strip
         fractionStrip = (GameObject)Instantiate(fractionStrips[1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
         fractionStrip.transform.parent = bar.transform;
         SpawnPoint.SetActive(false);
+        //Set the apparence first fration to 1
         ap[1] = 1;
-        ap[0] = 1;
+        ap[0] = 1; //blank franction strip not used in this game
 
-        moveOnce = true;
+        //Bool to make sure the cuts move just once
+        moveOnce = true; 
     }
 
+
+    //Update function is called once per frame
     void Update()
     {
+        //Get the cutting parts as game objects
         cuts = gameObject.GetComponentsInChildren<Transform>();
+
+        //Move the cutting parts once if the lenght of cut = 3 (2 cut parts + 1 spawn point)
         if (cuts.Length == 3 && moveOnce == true)
         {
             float unitsToMove = 50f;
@@ -117,36 +129,44 @@ public class CuttingManager : MonoBehaviour
         }
     }
 
-
+    //Function to activate the colors button -> not used in this game
     public void button_colors()
     {
         Colors.SetActive(true);
         //Colors.SetActive(false);
     }
 
-
+    // Function to check for correct answer
     public void check_button()
     {
+        //Destroy the cutting lines
         destroyLines();
+        //Make sure the parts move once after the next cut
         moveOnce = true;
 
+        //Get's the rigidbody for the two cutting parts
         Rigidbody2D rbFirstCut;
         Rigidbody2D rbSecondCut;
         cuts = gameObject.GetComponentsInChildren<Transform>();
         rbFirstCut = cuts[1].GetComponent<Rigidbody2D>();
         rbSecondCut = cuts[2].GetComponent<Rigidbody2D>();
 
+        //Gets the mass storred in the rigidbody for both cuts
         float firstCutMass = rbFirstCut.mass;
         float secondCutMass = rbSecondCut.mass;
+        //Create variables for correct cutting mass
         float correctCutMass = 0.0f;
         float errorPercentage = 0.0f;
 
-
+        //Check forr different fractions -> each one individual
+        //Special case for 1/2
         if (givenFration == "1/2")
         {
+            //Set the correct mass acording to the fraction + set the error
             correctCutMass = (float)(1.0 / 2.0);
             errorPercentage = (float)((correctCutMass * 5.0) / 100.0);
 
+            //Check right cut
             if (firstCutMass < correctCutMass && correctCutMass - firstCutMass < errorPercentage)
             {
                 animateOk();
@@ -154,6 +174,7 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
+            //Check left cut
             else if (firstCutMass > correctCutMass && firstCutMass - correctCutMass < errorPercentage)
             {
                 animateOk();
@@ -161,6 +182,7 @@ public class CuttingManager : MonoBehaviour
                 Destroy((cuts[1] as Transform).gameObject);
                 Destroy((cuts[2] as Transform).gameObject);
             }
+            //Incorrect answer
             else 
             {
                 animateNo();
@@ -174,27 +196,33 @@ public class CuttingManager : MonoBehaviour
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
-            return;
+            //Stops the fraction execution
+            return; 
         }
 
-
+        //This is the general way of checking all other fractions
         if (givenFration == "1/3")
         {
+            //Compute the correct mass + error
             correctCutMass = (float)(1.0 / 3.0);
             errorPercentage = (float)((correctCutMass * 5.0) / 100.0);
 
+            //Flag for correct answer
             int ok = 0;
 
+            //Call checkMass fucntion for the right cut
             if(checkMass(firstCutMass, correctCutMass, errorPercentage) == true)
             {
                 ok = 1;
                 
             }
+            //Call the checkMass function for the left cut
             else if(checkMass(secondCutMass, correctCutMass, errorPercentage) == true )
             {
                 ok = 1;
             }
 
+            //Check for correct = 1 / incorrect = 0
             if(ok == 1)
             {
                 animateOk();
@@ -214,6 +242,7 @@ public class CuttingManager : MonoBehaviour
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            //Go out of the function
             return;
         }
         if (givenFration == "2/3")
@@ -2719,11 +2748,14 @@ public class CuttingManager : MonoBehaviour
         return;
     }
 
+
+    //Function to spawn the correct next fraction strip if the answer was correct
     void spawnNextFraction()
     {
+        //The first part spawns all of them in sequance
         /*if (num + 1 == denom)
         {
-            TitleText.text = "Cut the following fraction: " + fractions[textCounter];
+            TitleText.text = "CUT THE FOLLOWING FRACTION: " + fractions[textCounter];
             givenFration = fractions[textCounter];
             textCounter++;
 
@@ -2741,7 +2773,7 @@ public class CuttingManager : MonoBehaviour
         }
         else
         {
-            TitleText.text = "Cut the following fraction: " + fractions[textCounter];
+            TitleText.text = "CUT THE FOLLOWING FRACTION: " + fractions[textCounter];
             givenFration = fractions[textCounter];
             textCounter++;
 
@@ -2757,18 +2789,26 @@ public class CuttingManager : MonoBehaviour
         //}
         
         
+        //This part spawns all fractions once randomly
 
+        //Rand seed makes sure that the sequance is always different. It generates approximatelly 700 numbers before it starts reapeating
         Random.seed = (Random.Range(Random.Range(Random.Range(Random.Range(0, 25), Random.Range(324, 5673)), Random.Range(Random.Range(53, 2378), Random.Range(50, 423))), Random.Range(Random.Range(Random.Range(23, 2354), Random.Range(1, 3456)), Random.Range(Random.Range(7, 32421), Random.Range(8, 23472)))));
 
+        //Set the correct rand acording to how many positions there are in the fractions array
         int rand = Random.Range(1, 66);
-        TitleText.text = "Cut the following fraction: " + fractions[rand];
+        //Set the text to the correct fraction
+        TitleText.text = "CUT THE FOLLOWING FRACTION: " + fractions[rand];
+        //Set the given fraction correct
         givenFration = fractions[rand];
+        //Variable for spawning the correct fraction
         apFraction = rand;
 
         Debug.Log("Random is: " + rand + "\nFraction is: " + fractions[rand]);
 
+        //Flag for checking if all fractions appeard already
         int ok = 1;
 
+        //Checks the ap array for 0 positions and stops the exectuions if all positions are set to 1
         for(int i = 1; i < NrFractions; i++)
         {
             if(ap[i] == 0)
@@ -2778,9 +2818,10 @@ public class CuttingManager : MonoBehaviour
             }
         }
 
+        //If it gets to this point it will start searching for the correct fraction strip according to the lenght of the fractions array
         if (ap[apFraction] == 0 && ok == 0)
         {
-
+            //Special case for 1/2
             if (rand == 1) // 1/2
             {
                 currentFraction = 1;
@@ -2790,6 +2831,7 @@ public class CuttingManager : MonoBehaviour
                 fractionStrip.transform.parent = bar.transform;
                 SpawnPoint.SetActive(false);
             }
+            //Allways check between x and y because the fractions have the same denominator
             else if (rand > 1 && rand < 4) // 1/3 2/3
             {
                 currentFraction = 2;
@@ -2885,8 +2927,10 @@ public class CuttingManager : MonoBehaviour
 
     } 
 
+    //Fraction to check the correct mass for each cut. Is called each time the check button is pressed except for 1/2
     private bool checkMass(float cutMass, float correctMass, float error)
     {
+        //Case for right cutting object mass
         if (cutMass < correctMass && correctMass - cutMass < error)
         {
             /*spawnNextFraction();
@@ -2897,6 +2941,7 @@ public class CuttingManager : MonoBehaviour
             Camera.main.GetComponent<DrawLine>().enabled = false;
             return true;
         }
+        //Case for left cutting object mass
         else if (cutMass > correctMass && cutMass - correctMass < error)
         {
             /*spawnNextFraction();
@@ -2908,28 +2953,35 @@ public class CuttingManager : MonoBehaviour
             return true;
         }
         
-  
-        CutterObjectHolder.SetActive(false);
-        Camera.main.GetComponent<DrawLine>().enabled = false;
+        //If it gets to this point the answer was incorrect
+        CutterObjectHolder.SetActive(false); //deactivate the cutting script
+        Camera.main.GetComponent<DrawLine>().enabled = false; // deactivate the line drowing script
         return false;
     }
 
+    //Function for showing different correct messages
     private void animateOk()
     {
+        //Random bettweend 0 and the maximum number in the okText array
         int r = Random.Range(0, okText.Length);
+        //Make the text show on the screen
         okText[r].SetActive(true);
+        //Start the timmer coroutine for showing the message for few seconds
         StartCoroutine(AnimateOk(r));
     }
 
+    //Coroutine if the answer was correct
     IEnumerator AnimateOk(int x)
     {
+        //Wait for 3 seconds
         yield return new WaitForSeconds(3);
 
-        CutterObjectHolder.SetActive(true);
-        Camera.main.GetComponent<DrawLine>().enabled = true; 
-        okText[x].SetActive(false);
+        CutterObjectHolder.SetActive(true); // activate cutting script
+        Camera.main.GetComponent<DrawLine>().enabled = true; // activate line drowing script
+        okText[x].SetActive(false); // deactivate the ok message
     }
 
+    //Exact same sequance for incorrect messages
     private void animateNo()
     {
         int r = Random.Range(0, noText.Length);
@@ -2937,6 +2989,7 @@ public class CuttingManager : MonoBehaviour
         StartCoroutine(AnimanteNo(r));
     }
 
+    //Same coroutine for for incorrect messages
     IEnumerator AnimanteNo(int x)
     {
         yield return new WaitForSeconds(3);
@@ -2946,14 +2999,17 @@ public class CuttingManager : MonoBehaviour
         noText[x].SetActive(false);
     }
 
+    //Functions to destroy the cutting lines when the check button is pressed no matter if the answer was correc or not
     private void destroyLines()
     {
+        //Gets all the lines from the parent gameobject
         lines = LinesHolder.GetComponentsInChildren<Transform>();
+        //Must start form i = 1 in order not to destroy the parent gameobject for the lines
         for (int i = 1; i < lines.Length; i++)
             Destroy((lines[i] as Transform).gameObject);
     }
 
-
+    /*
     public void selectColorButtonRed()
     {
         foreach (Transform child in transform)
@@ -3028,56 +3084,5 @@ public class CuttingManager : MonoBehaviour
         CutterObjectHolder.SetActive(true);
         MainCamera.GetComponent<DrawLine>().enabled = true;
     }
-
-    /*
-
-    public void twoTwo()
-    {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[0], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
-    }
-    public void twoThree()
-    {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[1], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
-    }
-    public void twoFour()
-    {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[2], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
-    }
-    public void threeThree()
-    {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[3], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
-    }
-    public void threeFour()
-    {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[4], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
-    }
-    public void fourFour()
-    {
-        GameObject chocolateBar = (GameObject)Instantiate(chocolateBars[5], SpawnPoint.transform.position, SpawnPoint.transform.rotation);
-        chocolateBar.transform.parent = bar.transform;
-        Destroy(SpawnPoint);
-        Objects.SetActive(false);
-        MainMenu.SetActive(true);
-    }*/
-
+    */
 }
