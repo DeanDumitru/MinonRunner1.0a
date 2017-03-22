@@ -35,7 +35,7 @@ public class Scoring : MonoBehaviour {
 
     void Update()
     {
-        scoreText.text = "Score: " + score;
+        scoreText.text = "SCORE: " + score;
  //       livesText.text = "Lives: " + lives;
     }
 }
