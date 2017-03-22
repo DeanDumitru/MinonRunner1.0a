@@ -1901,7 +1901,7 @@ public class SlicedSprite : MonoBehaviour
         spriteMesh.colors = colors;
         spriteMesh.RecalculateBounds();
         spriteMesh.RecalculateNormals();
-        spriteMesh.Optimize();
+        ;
 
         Vector2 localCentroid = Vector3.zero;
 
