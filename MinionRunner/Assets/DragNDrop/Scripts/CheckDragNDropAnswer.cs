@@ -15,9 +15,13 @@ public class CheckDragNDropAnswer : MonoBehaviour
     private string correctAnswer;
     private string enteredAnswer;
 
+    private Refresh DragNDropObject;
+
     public void ClickToCheckAnswer()
     {
-        
+
+        DragNDropObject = new Refresh();
+           
         Debug.Log("Button Clicked!");
 
         correctAnswer = FractionSelect.answerToBeChecked;
