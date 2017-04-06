@@ -13,17 +13,11 @@ public class CheckDragNDropAnswer : MonoBehaviour
 
 
     private string correctAnswer;
-	private string enteredAnswer;
-
-	public GameObject Numbers;
-	public GameObject Numerator;
-	public GameObject Denominator;
-
-	private int Counter;
+    private string enteredAnswer;
 
     public void ClickToCheckAnswer()
     {
-	        
+        
         Debug.Log("Button Clicked!");
 
         correctAnswer = FractionSelect.answerToBeChecked;
@@ -34,16 +28,7 @@ public class CheckDragNDropAnswer : MonoBehaviour
 
         if (correctAnswer == enteredAnswer)
         {
-			Transform child = Numerator.gameObject.transform.GetChild(0);
-			child.SetParent(Numbers.transform);
-
-			Transform child2 = Denominator.gameObject.transform.GetChild(0);
-			child2.SetParent(Numbers.transform);
-
-//			sortNumbers ();
-
             rightAnswerAudio.Play();
-
 
             Debug.Log("Answer is Correct!");
 
@@ -75,20 +60,4 @@ public class CheckDragNDropAnswer : MonoBehaviour
             DataBaseManager.writeSuccess(UserClass.player.givenFraction, UserClass.player.enteredFraction, UserClass.player.enteredRFraction, enteredAnswer, 0, timeTaken, 0);
         }
     }
-
-	/*
-	public void sortNumbers()
-	{
-		foreach (Transform child in Numbers.transform) {
-			foreach (Transform child1 in Numbers.transform)
-				if (child != child1) {
-					if(child.GetComponentsInChildren<NumberValue>() > child1.GetComponentsInChildren<NumberValue>())
-					{
-						Transform aux = child;
-						child = child1;
-						child1 = aux;
-				}
-		}
-	}*/
-
 }

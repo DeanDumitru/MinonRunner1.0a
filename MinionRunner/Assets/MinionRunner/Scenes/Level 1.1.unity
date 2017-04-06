@@ -12485,9 +12485,6 @@ MonoBehaviour:
   - {fileID: 2001246411}
   rightAnswerAudio: {fileID: 27352756}
   wrongAnswerAudio: {fileID: 326185153}
-  Numbers: {fileID: 702883273}
-  Numerator: {fileID: 272595048}
-  Denominator: {fileID: 1713269599}
 --- !u!1 &341453625
 GameObject:
   m_ObjectHideFlags: 0
@@ -31778,10 +31775,6 @@ Prefab:
     - target: {fileID: 1000011406523878, guid: 29fa4d72601c35f45ac2838d704009f1, type: 2}
       propertyPath: m_Name
       value: Slider (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1000011406523878, guid: 29fa4d72601c35f45ac2838d704009f1, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29fa4d72601c35f45ac2838d704009f1, type: 2}
