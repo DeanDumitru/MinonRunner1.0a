@@ -21,17 +21,9 @@ public class CheckDragNDropAnswer : MonoBehaviour
 
 	private int Counter;
 
-    private Refresh DragNDropObject;
-
     public void ClickToCheckAnswer()
     {
-<<<<<<< HEAD
 	        
-=======
-
-        DragNDropObject = new Refresh();
-           
->>>>>>> origin/master
         Debug.Log("Button Clicked!");
 
         correctAnswer = FractionSelect.answerToBeChecked;

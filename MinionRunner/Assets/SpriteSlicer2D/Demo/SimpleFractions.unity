@@ -1318,6 +1318,7 @@ Transform:
   m_LocalPosition: {x: -3.37, y: 3.62, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2100931577}
   - {fileID: 761531603}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -3561,7 +3562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 317972766}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &761531604
 Rigidbody2D:
@@ -3788,7 +3789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &854679782
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4213,7 +4214,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: -2
-  m_Sprite: {fileID: 21300000, guid: a971d2696e942e84799a463e6f851f35, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5715767db7bc56949bf3ac2b0a0f8b5f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4225,7 +4226,7 @@ Transform:
   m_GameObject: {fileID: 1116066773}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -19.4, y: 10.208365, z: 0}
-  m_LocalScale: {x: 6.2804766, y: 5.5526137, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_Children: []
   m_Father: {fileID: 228399065}
   m_RootOrder: 3
@@ -6420,7 +6421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1656601139
 Transform:
   m_ObjectHideFlags: 0
@@ -6681,7 +6682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1736920902
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7199,6 +7200,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1876118452}
+--- !u!1001 &1879559286
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 317972766}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -8.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1889383341
 GameObject:
   m_ObjectHideFlags: 0
@@ -7928,6 +7975,10 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2088325532}
+--- !u!4 &2100931577 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 98ca5d8fb293f8d489a908208c9ae1e8, type: 2}
+  m_PrefabInternal: {fileID: 1879559286}
 --- !u!1 &2131493198
 GameObject:
   m_ObjectHideFlags: 0
